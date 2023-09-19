@@ -37,6 +37,7 @@ class _ProfileDirectoryState extends State<ProfileDirectory> {
         BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings"),
       ]),
       body: Column(children: [
+        DirectorySectionMarker("A"),
         Expanded(
             child: ListView.builder(
                 itemCount: profiles.length,
