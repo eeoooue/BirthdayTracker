@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'birthdaybar.dart';
+import 'birthdayprofile.dart';
 import 'profilestore.dart';
 
 class HomeFeed extends StatefulWidget {
@@ -12,7 +13,8 @@ class HomeFeed extends StatefulWidget {
 }
 
 class _HomeFeedState extends State<HomeFeed> {
-  final ProfileStore store = ProfileStore();
+  final List<BirthdayProfile> profiles =
+      ProfileStore().getChronologicalOrdering();
 
   _HomeFeedState();
 
@@ -40,9 +42,9 @@ class _HomeFeedState extends State<HomeFeed> {
         ),
         Expanded(
             child: ListView.builder(
-                itemCount: store.profiles.length,
+                itemCount: profiles.length,
                 itemBuilder: (context, index) {
-                  return BirthdayProfileBar(store.profiles[index]);
+                  return BirthdayProfileBar(profiles[index]);
                 }))
       ]),
     );
