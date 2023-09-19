@@ -1,7 +1,10 @@
+import 'package:birthdaytracker/birthdayprofile.dart';
 import 'package:flutter/material.dart';
 
 class BirthdayProfileBar extends StatelessWidget {
-  BirthdayProfileBar({super.key});
+  final BirthdayProfile profile;
+
+  BirthdayProfileBar(this.profile, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,8 +14,8 @@ class BirthdayProfileBar extends StatelessWidget {
       margin: const EdgeInsets.all(10),
       child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
         BdarBarPicture(),
-        BdayBarName(),
-        BdayBarDateBox(),
+        BdayBarName(profile.name),
+        BdayBarDateBox(profile.month, profile.day),
       ]),
     );
   }
@@ -39,7 +42,9 @@ class BdarBarPicture extends StatelessWidget {
 }
 
 class BdayBarName extends StatelessWidget {
-  BdayBarName({super.key});
+  final String name;
+
+  BdayBarName(this.name, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,13 +52,19 @@ class BdayBarName extends StatelessWidget {
     return Expanded(
         child: Padding(
       padding: const EdgeInsets.all(16),
-      child: Text("Person"),
+      child: Text(
+        name,
+        style: TextStyle(fontSize: 18),
+      ),
     ));
   }
 }
 
 class BdayBarDateBox extends StatelessWidget {
-  BdayBarDateBox({super.key});
+  final int month;
+  final int day;
+
+  const BdayBarDateBox(this.month, this.day, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -63,36 +74,54 @@ class BdayBarDateBox extends StatelessWidget {
       height: 80,
       width: 80,
       color: Colors.black38,
-      child: Column(children: [DateBoxMonth(), DateBoxDay()]),
+      child: Column(children: [DateBoxMonth(month), DateBoxDay(day)]),
     );
   }
 }
 
 class DateBoxMonth extends StatelessWidget {
-  DateBoxMonth({super.key});
+  final int month;
+  final List<String> months = List.from([
+    "JAN",
+    "FEB",
+    "MAR",
+    "APR",
+    "MAY",
+    "JUN",
+    "JUL",
+    "AUG",
+    "SEP",
+    "OCT",
+    "NOV",
+    "DEC"
+  ]);
+
+  DateBoxMonth(this.month, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Expanded(
+    return Expanded(
       flex: 2,
       child: Center(
-          child:
-              Text("MAR", style: TextStyle(color: Colors.white, fontSize: 16))),
+          child: Text(months[month - 1],
+              style: const TextStyle(color: Colors.white, fontSize: 16))),
     );
   }
 }
 
 class DateBoxDay extends StatelessWidget {
-  DateBoxDay({super.key});
+  final int day;
+
+  DateBoxDay(this.day, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Expanded(
+    return Expanded(
       flex: 3,
       child: Center(
           child: Text(
-        "20",
-        style: TextStyle(color: Colors.white, fontSize: 28),
+        day.toString(),
+        style: const TextStyle(color: Colors.white, fontSize: 28),
       )),
     );
   }

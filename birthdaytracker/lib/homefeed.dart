@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
 
-import 'mockbirthday.dart';
+import 'birthdayprofile.dart';
+import 'birthdaybar.dart';
 
 class HomeFeed extends StatefulWidget {
-  const HomeFeed({super.key});
+  final List<BirthdayProfile> profiles;
+
+  const HomeFeed(this.profiles, {super.key});
 
   @override
   State<StatefulWidget> createState() {
-    return _HomeFeedState();
+    return _HomeFeedState(profiles);
   }
 }
 
 class _HomeFeedState extends State<HomeFeed> {
+  final List<BirthdayProfile> profiles;
+
+  _HomeFeedState(this.profiles);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,17 +42,11 @@ class _HomeFeedState extends State<HomeFeed> {
           color: Colors.grey,
         ),
         Expanded(
-            child: ListView(
-          children: [
-            BirthdayProfileBar(),
-            BirthdayProfileBar(),
-            BirthdayProfileBar(),
-            BirthdayProfileBar(),
-            BirthdayProfileBar(),
-            BirthdayProfileBar(),
-            BirthdayProfileBar(),
-          ],
-        ))
+            child: ListView.builder(
+                itemCount: profiles.length,
+                itemBuilder: (context, index) {
+                  return BirthdayProfileBar(profiles[index]);
+                }))
       ]),
     );
   }
