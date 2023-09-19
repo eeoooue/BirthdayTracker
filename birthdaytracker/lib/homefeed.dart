@@ -4,17 +4,20 @@ import 'birthdayprofile.dart';
 import 'birthdaybar.dart';
 
 class HomeFeed extends StatefulWidget {
-  const HomeFeed({super.key});
+  final List<BirthdayProfile> profiles;
+
+  const HomeFeed(this.profiles, {super.key});
 
   @override
   State<StatefulWidget> createState() {
-    return _HomeFeedState();
+    return _HomeFeedState(profiles);
   }
 }
 
 class _HomeFeedState extends State<HomeFeed> {
-  final BirthdayProfile fabi = BirthdayProfile("Fabiano Caruana", 7, 30);
-  final BirthdayProfile magnus = BirthdayProfile("Magnus Carlsen", 11, 30);
+  final List<BirthdayProfile> profiles;
+
+  _HomeFeedState(this.profiles);
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +42,11 @@ class _HomeFeedState extends State<HomeFeed> {
           color: Colors.grey,
         ),
         Expanded(
-            child: ListView(
-          children: [
-            BirthdayProfileBar(fabi),
-            BirthdayProfileBar(magnus),
-          ],
-        ))
+            child: ListView.builder(
+                itemCount: profiles.length,
+                itemBuilder: (context, index) {
+                  return BirthdayProfileBar(profiles[index]);
+                }))
       ]),
     );
   }
