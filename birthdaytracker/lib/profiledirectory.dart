@@ -22,6 +22,19 @@ class _ProfileDirectoryState extends State<ProfileDirectory> {
     populateElements();
   }
 
+  void _navigateBottomBar(int index) {
+    switch (index) {
+      case 0:
+        {
+          Navigator.popAndPushNamed(context, "/homefeed");
+        }
+      case 1:
+        {
+          Navigator.popAndPushNamed(context, "/profiledirectory");
+        }
+    }
+  }
+
   void populateElements() {
     ProfileStore store = ProfileStore();
     HashSet<String> seen = HashSet();
@@ -53,11 +66,15 @@ class _ProfileDirectoryState extends State<ProfileDirectory> {
         ),
         backgroundColor: Colors.blue,
       ),
-      bottomNavigationBar: BottomNavigationBar(currentIndex: 1, items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-        BottomNavigationBarItem(icon: Icon(Icons.people), label: "People"),
-        BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings"),
-      ]),
+      bottomNavigationBar: BottomNavigationBar(
+          onTap: _navigateBottomBar,
+          currentIndex: 1,
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+            BottomNavigationBarItem(icon: Icon(Icons.people), label: "People"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.settings), label: "Settings"),
+          ]),
       body: Column(children: [
         Expanded(
             child: ListView.builder(

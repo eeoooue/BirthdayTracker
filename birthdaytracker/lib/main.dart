@@ -16,6 +16,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       home: HomeFeed(),
+      routes: {
+        '/homefeed': (context) => HomeFeed(),
+        '/profiledirectory': (context) => ProfileDirectory(),
+      },
     );
   }
 }
