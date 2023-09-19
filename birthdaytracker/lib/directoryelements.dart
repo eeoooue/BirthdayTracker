@@ -5,7 +5,7 @@ abstract class DirectoryElement extends StatelessWidget {
   const DirectoryElement({super.key});
 }
 
-class DirectoryProfile extends StatelessWidget {
+class DirectoryProfile extends DirectoryElement {
   final BirthdayProfile profile;
 
   const DirectoryProfile(this.profile, {super.key});
@@ -27,7 +27,7 @@ class DirectoryProfile extends StatelessWidget {
   }
 }
 
-class DirectorySectionMarker extends StatelessWidget {
+class DirectorySectionMarker extends DirectoryElement {
   final String character;
 
   const DirectorySectionMarker(this.character, {super.key});
