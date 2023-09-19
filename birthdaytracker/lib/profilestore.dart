@@ -20,4 +20,15 @@ class ProfileStore {
     profiles.add(BirthdayProfile("Magnus Carlsen", 11, 30));
     profiles.add(BirthdayProfile("Hikaru Nakamura", 12, 9));
   }
+
+  List<String> getNames() {
+    List<String> names = List.empty(growable: true);
+
+    for (BirthdayProfile profile in profiles) {
+      names.add(profile.name);
+    }
+    names.sort();
+
+    return names;
+  }
 }
