@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'mockbirthday.dart';
+import 'birthdayprofile.dart';
+import 'birthdaybar.dart';
 
 class HomeFeed extends StatefulWidget {
   const HomeFeed({super.key});
@@ -12,6 +13,9 @@ class HomeFeed extends StatefulWidget {
 }
 
 class _HomeFeedState extends State<HomeFeed> {
+  final BirthdayProfile fabi = BirthdayProfile("Fabiano Caruana", 7, 30);
+  final BirthdayProfile magnus = BirthdayProfile("Magnus Carlsen", 11, 30);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,13 +41,8 @@ class _HomeFeedState extends State<HomeFeed> {
         Expanded(
             child: ListView(
           children: [
-            BirthdayProfileBar(),
-            BirthdayProfileBar(),
-            BirthdayProfileBar(),
-            BirthdayProfileBar(),
-            BirthdayProfileBar(),
-            BirthdayProfileBar(),
-            BirthdayProfileBar(),
+            BirthdayProfileBar(fabi),
+            BirthdayProfileBar(magnus),
           ],
         ))
       ]),
