@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'mockbirthday.dart';
+
 class HomeFeed extends StatefulWidget {
   const HomeFeed({super.key});
 
@@ -14,9 +16,11 @@ class _HomeFeedState extends State<HomeFeed> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "BirthdayTracker",
-          style: TextStyle(color: Colors.white),
+        title: const Center(
+          child: Text(
+            "BirthdayTracker",
+            style: TextStyle(color: Colors.white),
+          ),
         ),
         backgroundColor: Colors.blue,
       ),
@@ -24,6 +28,24 @@ class _HomeFeedState extends State<HomeFeed> {
         BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
         BottomNavigationBarItem(icon: Icon(Icons.people), label: "People"),
         BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings"),
+      ]),
+      body: Column(children: [
+        Container(
+          height: 30,
+          color: Colors.grey,
+        ),
+        Expanded(
+            child: ListView(
+          children: [
+            BirthdayProfileBar(),
+            BirthdayProfileBar(),
+            BirthdayProfileBar(),
+            BirthdayProfileBar(),
+            BirthdayProfileBar(),
+            BirthdayProfileBar(),
+            BirthdayProfileBar(),
+          ],
+        ))
       ]),
     );
   }
