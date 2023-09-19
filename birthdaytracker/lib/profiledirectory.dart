@@ -1,5 +1,6 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
-import 'birthdaybar.dart';
 import 'birthdayprofile.dart';
 import 'directoryelements.dart';
 import 'profilestore.dart';
@@ -14,10 +15,31 @@ class ProfileDirectory extends StatefulWidget {
 }
 
 class _ProfileDirectoryState extends State<ProfileDirectory> {
-  final List<BirthdayProfile> profiles =
-      ProfileStore().getAlphabeticalOrdering();
+  final List<DirectoryElement> elements = List.empty(growable: true);
+  final bool includeSectionMarkers = true;
 
-  _ProfileDirectoryState();
+  _ProfileDirectoryState() {
+    populateElements();
+  }
+
+  void populateElements() {
+    ProfileStore store = ProfileStore();
+    HashSet<String> seen = HashSet();
+
+    for (BirthdayProfile profile in store.getAlphabeticalOrdering()) {
+      String firstChar = profile.name[0];
+      if (!seen.contains(firstChar)) {
+        if (includeSectionMarkers) {
+          elements.add(DirectorySectionMarker(firstChar));
+        }
+
+        seen.add(firstChar);
+      }
+      elements.add(DirectoryProfile(profile));
+    }
+
+    print("${elements.length} elements found");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +59,11 @@ class _ProfileDirectoryState extends State<ProfileDirectory> {
         BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings"),
       ]),
       body: Column(children: [
-        DirectorySectionMarker("A"),
         Expanded(
             child: ListView.builder(
-                itemCount: profiles.length,
+                itemCount: elements.length,
                 itemBuilder: (context, index) {
-                  return DirectoryProfile(profiles[index]);
+                  return elements[index];
                 }))
       ]),
     );
