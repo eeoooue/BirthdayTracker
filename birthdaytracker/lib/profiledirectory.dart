@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'birthdaybar.dart';
 import 'birthdayprofile.dart';
+import 'directoryelements.dart';
 import 'profilestore.dart';
 
 class ProfileDirectory extends StatefulWidget {
@@ -36,15 +37,11 @@ class _ProfileDirectoryState extends State<ProfileDirectory> {
         BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings"),
       ]),
       body: Column(children: [
-        Container(
-          height: 30,
-          color: Colors.grey,
-        ),
         Expanded(
             child: ListView.builder(
                 itemCount: profiles.length,
                 itemBuilder: (context, index) {
-                  return BirthdayProfileBar(profiles[index]);
+                  return DirectoryProfile(profiles[index]);
                 }))
       ]),
     );
