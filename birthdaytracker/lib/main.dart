@@ -1,4 +1,3 @@
-import 'package:birthdaytracker/birthdayprofile.dart';
 import 'package:birthdaytracker/homefeed.dart';
 import 'package:flutter/material.dart';
 
@@ -7,32 +6,14 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  final List<BirthdayProfile> profiles = List.empty(growable: true);
-
-  MyApp({super.key}) {
-    populateProfiles();
-  }
-
-  void populateProfiles() {
-    profiles.add(BirthdayProfile("Sergey Karjakin", 1, 12));
-    profiles.add(BirthdayProfile("Veselin Topalov", 3, 15));
-    profiles.add(BirthdayProfile("Anatoly Karpov", 5, 23));
-    profiles.add(BirthdayProfile("Vladimir Kramnik", 6, 25));
-    profiles.add(BirthdayProfile("Judit Polgar", 7, 23));
-    profiles.add(BirthdayProfile("Fabiano Caruana", 7, 30));
-    profiles.add(BirthdayProfile("Levon Aronian", 10, 6));
-    profiles.add(BirthdayProfile("Mikhail Tal", 11, 9));
-    profiles.add(BirthdayProfile("Jose Capablanca", 11, 19));
-    profiles.add(BirthdayProfile("Magnus Carlsen", 11, 30));
-    profiles.add(BirthdayProfile("Hikaru Nakamura", 12, 9));
-  }
+  MyApp({super.key}) {}
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      home: HomeFeed(profiles),
+      home: HomeFeed(),
     );
   }
 }

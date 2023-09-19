@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
-
-import 'birthdayprofile.dart';
 import 'birthdaybar.dart';
+import 'birthdayprofile.dart';
+import 'profilestore.dart';
 
 class HomeFeed extends StatefulWidget {
-  final List<BirthdayProfile> profiles;
-
-  const HomeFeed(this.profiles, {super.key});
+  const HomeFeed({super.key});
 
   @override
   State<StatefulWidget> createState() {
-    return _HomeFeedState(profiles);
+    return _HomeFeedState();
   }
 }
 
 class _HomeFeedState extends State<HomeFeed> {
-  final List<BirthdayProfile> profiles;
+  final List<BirthdayProfile> profiles =
+      ProfileStore().getChronologicalOrdering();
 
-  _HomeFeedState(this.profiles);
+  _HomeFeedState();
 
   @override
   Widget build(BuildContext context) {
