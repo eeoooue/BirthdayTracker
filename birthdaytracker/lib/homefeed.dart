@@ -18,6 +18,19 @@ class _HomeFeedState extends State<HomeFeed> {
 
   _HomeFeedState();
 
+  void _navigateBottomBar(int index) {
+    switch (index) {
+      case 0:
+        {
+          Navigator.popAndPushNamed(context, "/homefeed");
+        }
+      case 1:
+        {
+          Navigator.popAndPushNamed(context, "/profiledirectory");
+        }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +43,8 @@ class _HomeFeedState extends State<HomeFeed> {
         ),
         backgroundColor: Colors.blue,
       ),
-      bottomNavigationBar: BottomNavigationBar(items: [
+      bottomNavigationBar:
+          BottomNavigationBar(onTap: _navigateBottomBar, items: [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
         BottomNavigationBarItem(icon: Icon(Icons.people), label: "People"),
         BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings"),
