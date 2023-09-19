@@ -20,6 +20,11 @@ class _HomeFeedState extends State<HomeFeed> {
         ),
         backgroundColor: Colors.blue,
       ),
+      bottomNavigationBar: BottomNavigationBar(items: [
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+        BottomNavigationBarItem(icon: Icon(Icons.people), label: "People"),
+        BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings"),
+      ]),
     );
   }
 }
