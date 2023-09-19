@@ -1,2 +1,3 @@
 # BirthdayTracker
-Flutter app for tracking upcoming birthdays
+
+Flutter app for tracking upcoming birthdays.
