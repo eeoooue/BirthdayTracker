@@ -1,9 +1,9 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'birthdayprofile.dart';
-import 'directoryelements.dart';
-import 'profilestore.dart';
+import '../models/birthdayprofile.dart';
+import '../widgets/directoryelements.dart';
+import '../models/profilestore.dart';
 
 class ProfileDirectory extends StatefulWidget {
   const ProfileDirectory({super.key});

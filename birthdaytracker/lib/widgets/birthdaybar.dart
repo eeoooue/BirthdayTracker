@@ -1,4 +1,4 @@
-import 'package:birthdaytracker/birthdayprofile.dart';
+import 'package:birthdaytracker/models/birthdayprofile.dart';
 import 'package:flutter/material.dart';
 
 class BirthdayProfileBar extends StatelessWidget {
