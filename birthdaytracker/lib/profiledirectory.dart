@@ -30,7 +30,7 @@ class _ProfileDirectoryState extends State<ProfileDirectory> {
         ),
         backgroundColor: Colors.blue,
       ),
-      bottomNavigationBar: BottomNavigationBar(items: [
+      bottomNavigationBar: BottomNavigationBar(currentIndex: 1, items: [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
         BottomNavigationBarItem(icon: Icon(Icons.people), label: "People"),
         BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings"),
