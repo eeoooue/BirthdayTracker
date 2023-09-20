@@ -5,9 +5,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   await Hive.initFlutter();
-
-  Box namesBox = await Hive.openBox("names");
-  Box bdaysBox = await Hive.openBox("bdays");
+  await Hive.openBox("names");
+  await Hive.openBox("bdays");
 
   runApp(MyApp());
 }
