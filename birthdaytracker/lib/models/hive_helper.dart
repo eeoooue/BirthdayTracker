@@ -66,14 +66,14 @@ class HiveHelper {
     if (namesBox.containsKey(key) && bdaysBox.containsKey(key)) {
       String name = namesBox.get(key);
       String encodedBday = bdaysBox.get(key);
-
       List<int> timings = interpretDate(encodedBday);
-
-      BirthdayProfile profile =
-          BirthdayProfile(key, name, timings[1], timings[0]);
+      int days = timings[0];
+      int months = timings[1];
+      BirthdayProfile profile = BirthdayProfile(key, name, months, days);
 
       if (includesYear(encodedBday)) {
-        profile.setYear(timings[2]);
+        int years = timings[2];
+        profile.setYear(years);
       }
 
       return profile;
