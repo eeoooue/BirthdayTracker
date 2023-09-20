@@ -1,4 +1,5 @@
 import 'package:birthdaytracker/models/birthdayprofile.dart';
+import 'package:birthdaytracker/pages/viewprofile.dart';
 import 'package:flutter/material.dart';
 
 class BirthdayProfileBar extends StatelessWidget {
@@ -6,17 +7,27 @@ class BirthdayProfileBar extends StatelessWidget {
 
   BirthdayProfileBar(this.profile, {super.key});
 
+  void _openProfile(BuildContext c) {
+    final route = MaterialPageRoute(builder: (c) => ViewProfile(profile));
+    Navigator.push(c, route);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.grey,
-      height: 80,
-      margin: const EdgeInsets.all(10),
-      child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-        BdarBarPicture(),
-        BdayBarName(profile.name),
-        BdayBarDateBox(profile.month, profile.day),
-      ]),
+    return MaterialButton(
+      onPressed: () {
+        _openProfile(context);
+      },
+      child: Container(
+        color: Colors.grey,
+        height: 80,
+        margin: const EdgeInsets.all(10),
+        child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+          BdarBarPicture(),
+          BdayBarName(profile.name),
+          BdayBarDateBox(profile.month, profile.day),
+        ]),
+      ),
     );
   }
 }
