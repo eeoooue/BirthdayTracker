@@ -1,4 +1,6 @@
 import 'package:birthdaytracker/models/birthdayprofile.dart';
+import 'package:birthdaytracker/pages/viewprofile.dart';
+
 import 'package:flutter/material.dart';
 
 abstract class DirectoryElement extends StatelessWidget {
@@ -10,19 +12,29 @@ class DirectoryProfile extends DirectoryElement {
 
   const DirectoryProfile(this.profile, {super.key});
 
+  void _openProfile(BuildContext c) {
+    final route = MaterialPageRoute(builder: (c) => ViewProfile(profile));
+    Navigator.push(c, route);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
-      child: Row(children: [
-        Padding(
-          padding: const EdgeInsets.all(12),
-          child: Text(
-            profile.name,
-            style: TextStyle(fontSize: 20),
+    return TextButton(
+      onPressed: () {
+        _openProfile(context);
+      },
+      child: Container(
+        decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+        child: Row(children: [
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Text(
+              profile.name,
+              style: TextStyle(fontSize: 20),
+            ),
           ),
-        ),
-      ]),
+        ]),
+      ),
     );
   }
 }
