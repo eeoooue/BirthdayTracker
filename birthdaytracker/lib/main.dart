@@ -1,15 +1,20 @@
-import 'package:birthdaytracker/pages/homefeed.dart';
-import 'package:birthdaytracker/pages/profiledirectory.dart';
+import 'package:birthdaytracker/pages/home_feed.dart';
+import 'package:birthdaytracker/pages/profile_directory.dart';
+import 'package:birthdaytracker/pages/settings.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  await Hive.openBox("names");
+  await Hive.openBox("bdays");
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key}) {}
+  MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,6 +24,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/homefeed': (context) => HomeFeed(),
         '/profiledirectory': (context) => ProfileDirectory(),
+        '/settings': (context) => SettingsPage(),
       },
     );
   }

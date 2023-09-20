@@ -1,7 +1,7 @@
 import 'package:birthdaytracker/models/nav_helper.dart';
 import 'package:flutter/material.dart';
-import '../models/timehelper.dart';
-import '../models/birthdayprofile.dart';
+import '../models/time_helper.dart';
+import '../models/birthday_profile.dart';
 import '../widgets/birthday_profile_bar.dart';
 
 class HomeFeed extends StatefulWidget {
@@ -24,23 +24,14 @@ class _HomeFeedState extends State<HomeFeed> {
     int month = DateTime.now().month;
     int year = DateTime.now().year;
 
-    BirthdayProfile today = BirthdayProfile("Today", month, day);
+    BirthdayProfile today = BirthdayProfile(-1, "Today", month, day);
     today.setYear(year);
 
     return today.getBirthdayString();
   }
 
   void _navigateBottomBar(int index) {
-    switch (index) {
-      case 0:
-        {
-          Navigator.popAndPushNamed(context, "/homefeed");
-        }
-      case 1:
-        {
-          Navigator.popAndPushNamed(context, "/profiledirectory");
-        }
-    }
+    navHelper.navigateBottomBar(context, index);
   }
 
   @override

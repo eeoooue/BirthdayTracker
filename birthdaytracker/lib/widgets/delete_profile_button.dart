@@ -1,8 +1,12 @@
-import 'package:birthdaytracker/models/birthdayprofile.dart';
+import 'package:birthdaytracker/models/birthday_profile.dart';
+import 'package:birthdaytracker/models/hive_helper.dart';
+import 'package:birthdaytracker/models/nav_helper.dart';
 import 'package:flutter/material.dart';
 
 class DeleteProfileButton extends StatelessWidget {
+  final NavigationHelper navHelper = NavigationHelper();
   final BirthdayProfile profile;
+
   DeleteProfileButton(this.profile, {super.key});
 
   @override
@@ -10,7 +14,12 @@ class DeleteProfileButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: MaterialButton(
-          onPressed: () {}, child: Icon(Icons.delete), color: Colors.grey[300]),
+          onPressed: () {
+            HiveHelper.deleteProfile(profile);
+            navHelper.navigateHome(context);
+          },
+          child: Icon(Icons.delete),
+          color: Colors.grey[300]),
     );
   }
 }

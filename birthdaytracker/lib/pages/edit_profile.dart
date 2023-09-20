@@ -1,77 +1,89 @@
+import 'package:birthdaytracker/models/hive_helper.dart';
+import 'package:birthdaytracker/models/nav_helper.dart';
 import 'package:flutter/material.dart';
-import '../models/birthdayprofile.dart';
+import '../models/birthday_profile.dart';
 
-class AddProfile extends StatefulWidget {
-  const AddProfile({super.key});
+class EditProfile extends StatefulWidget {
+  final BirthdayProfile profile;
+
+  const EditProfile(this.profile, {super.key});
 
   @override
   State<StatefulWidget> createState() {
-    return _AddProfileState();
+    return _EditProfileState(profile);
   }
 }
 
-class _AddProfileState extends State<AddProfile> {
+class _EditProfileState extends State<EditProfile> {
+  final BirthdayProfile profile;
+  final NavigationHelper navHelper = NavigationHelper();
   final _textController = TextEditingController();
 
-  bool includeYear = false;
   DateTime selectedTime = DateTime.now();
-  String dateButtonString = "Select Date";
+  String dateButtonString = "";
   bool dateHasChanged = false;
+  bool includesYear = false;
 
-  String getFormattedTime() {
-    int month = selectedTime.month;
-    int day = selectedTime.day;
-    BirthdayProfile profile = BirthdayProfile("formatting", month, day);
-
-    if (includeYear) {
-      profile.setYear(selectedTime.year);
-    }
-
-    return profile.getBirthdayString();
+  _EditProfileState(this.profile) {
+    dateButtonString = profile.getBirthdayString();
+    includesYear = profile.includesYear;
+    _textController.text = profile.name;
   }
 
-  _AddProfileState();
+  String getFormattedTime() {
+    int month = profile.month;
+    int day = profile.day;
 
-  void _navigateHome() {
-    while (Navigator.canPop(context)) {
-      Navigator.pop(context);
+    if (dateHasChanged) {
+      month = selectedTime.month;
+      day = selectedTime.day;
     }
 
-    Navigator.popAndPushNamed(context, "/homefeed");
+    BirthdayProfile temp = BirthdayProfile(-1, "formatting", month, day);
+
+    if (includesYear) {
+      if (dateHasChanged) {
+        temp.setYear(selectedTime.year);
+      } else {
+        temp.setYear(profile.year);
+      }
+    }
+
+    return temp.getBirthdayString();
   }
 
   void checkBoxChanged(bool? value) {
     setState(() {
-      includeYear = !includeYear;
-      if (dateHasChanged) {
-        dateButtonString = getFormattedTime();
-      }
+      includesYear = !includesYear;
+      dateButtonString = getFormattedTime();
     });
   }
 
-  bool canSubmit() {
+  void submitChanges() {
     if (_textController.text.isEmpty) {
-      return false;
-    }
-    return dateHasChanged;
-  }
-
-  void submit() {
-    if (!canSubmit()) {
       return;
     }
 
-    String name = _textController.text;
-    int month = selectedTime.month;
-    int day = selectedTime.day;
+    profile.name = _textController.text;
 
-    BirthdayProfile profile = BirthdayProfile(name, month, day);
-
-    if (includeYear) {
-      profile.setYear(selectedTime.year);
+    if (includesYear) {
+      profile.includesYear = true;
     }
-    print("submitted! '${name}' : ${profile.getBirthdayString()}");
-    _navigateHome();
+
+    if (dateHasChanged) {
+      profile.month = selectedTime.month;
+      profile.day = selectedTime.day;
+      if (profile.includesYear) {
+        profile.setYear(selectedTime.year);
+      }
+    }
+
+    if (!includesYear) {
+      profile.includesYear = false;
+    }
+
+    HiveHelper.saveProfile(profile);
+    navHelper.navigateHome(context);
   }
 
   void _showDatePicker() {
@@ -94,7 +106,7 @@ class _AddProfileState extends State<AddProfile> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Add Profile",
+          "Edit Profile",
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.blue,
@@ -122,7 +134,7 @@ class _AddProfileState extends State<AddProfile> {
             children: [
               const Text("Include Year?"),
               Checkbox(
-                value: includeYear,
+                value: includesYear,
                 onChanged: (value) => checkBoxChanged(value),
               ),
             ],
@@ -134,9 +146,9 @@ class _AddProfileState extends State<AddProfile> {
                 padding: const EdgeInsets.all(8.0),
                 child: MaterialButton(
                   onPressed: () {
-                    submit();
+                    submitChanges();
                   },
-                  child: Text("Submit"),
+                  child: Text("Save Changes"),
                   color: Colors.blue,
                   textColor: Colors.white,
                 ),

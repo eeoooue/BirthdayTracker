@@ -1,11 +1,9 @@
 import 'dart:collection';
-
-import 'package:birthdaytracker/pages/addprofile.dart';
 import 'package:flutter/material.dart';
-import '../models/birthdayprofile.dart';
+import '../models/birthday_profile.dart';
 import '../models/nav_helper.dart';
-import '../widgets/directoryelements.dart';
-import '../models/profilestore.dart';
+import '../widgets/directory_elements.dart';
+import '../models/profile_store.dart';
 
 class ProfileDirectory extends StatefulWidget {
   const ProfileDirectory({super.key});
@@ -25,22 +23,8 @@ class _ProfileDirectoryState extends State<ProfileDirectory> {
     populateElements();
   }
 
-  void _addProfile() {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => AddProfile()));
-  }
-
   void _navigateBottomBar(int index) {
-    switch (index) {
-      case 0:
-        {
-          Navigator.popAndPushNamed(context, "/homefeed");
-        }
-      case 1:
-        {
-          Navigator.popAndPushNamed(context, "/profiledirectory");
-        }
-    }
+    navHelper.navigateBottomBar(context, index);
   }
 
   void populateElements() {
@@ -48,7 +32,7 @@ class _ProfileDirectoryState extends State<ProfileDirectory> {
     HashSet<String> seen = HashSet();
 
     for (BirthdayProfile profile in store.getAlphabeticalOrdering()) {
-      String firstChar = profile.name[0];
+      String firstChar = profile.name[0].toUpperCase();
       if (!seen.contains(firstChar)) {
         if (includeSectionMarkers) {
           elements.add(DirectorySectionMarker(firstChar));
@@ -84,7 +68,7 @@ class _ProfileDirectoryState extends State<ProfileDirectory> {
         child: FittedBox(
           child: FloatingActionButton(
               onPressed: () {
-                _addProfile();
+                navHelper.addProfile(context);
               },
               child: const Icon(Icons.add)),
         ),
