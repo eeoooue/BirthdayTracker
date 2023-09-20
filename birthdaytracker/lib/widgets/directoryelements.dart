@@ -1,6 +1,5 @@
 import 'package:birthdaytracker/models/birthdayprofile.dart';
 import 'package:birthdaytracker/pages/viewprofile.dart';
-
 import 'package:flutter/material.dart';
 
 abstract class DirectoryElement extends StatelessWidget {
