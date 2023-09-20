@@ -74,23 +74,6 @@ class _AddProfileState extends State<AddProfile> {
     _navigateHome();
   }
 
-  void _navigateBottomBar(int index) {
-    if (Navigator.canPop(context)) {
-      Navigator.pop(context);
-    }
-
-    switch (index) {
-      case 0:
-        {
-          Navigator.popAndPushNamed(context, "/homefeed");
-        }
-      case 1:
-        {
-          Navigator.popAndPushNamed(context, "/profiledirectory");
-        }
-    }
-  }
-
   void _showDatePicker() {
     showDatePicker(
             context: context,

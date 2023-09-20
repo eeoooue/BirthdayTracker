@@ -22,23 +22,6 @@ class _ViewProfileState extends State<ViewProfile> {
 
   _ViewProfileState(this.profile);
 
-  void _navigateBottomBar(int index) {
-    if (Navigator.canPop(context)) {
-      Navigator.pop(context);
-    }
-
-    switch (index) {
-      case 0:
-        {
-          Navigator.popAndPushNamed(context, "/homefeed");
-        }
-      case 1:
-        {
-          Navigator.popAndPushNamed(context, "/profiledirectory");
-        }
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
