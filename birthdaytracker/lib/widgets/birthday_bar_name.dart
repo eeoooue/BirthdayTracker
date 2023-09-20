@@ -13,7 +13,7 @@ class BdayBarName extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: Text(
         name,
-        style: TextStyle(fontSize: 18),
+        style: TextStyle(fontSize: 22, color: Colors.white),
       ),
     ));
   }

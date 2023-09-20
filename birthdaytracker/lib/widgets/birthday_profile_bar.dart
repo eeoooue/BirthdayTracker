@@ -22,9 +22,9 @@ class BirthdayProfileBar extends StatelessWidget {
         _openProfile(context);
       },
       child: Container(
-        color: Colors.grey,
+        color: Colors.blue,
         height: 80,
-        margin: const EdgeInsets.all(10),
+        margin: const EdgeInsets.only(top: 10),
         child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
           BdarBarPicture(),
           BdayBarName(profile.name),
