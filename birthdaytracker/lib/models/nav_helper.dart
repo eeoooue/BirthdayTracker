@@ -1,7 +1,7 @@
-import 'package:birthdaytracker/models/birthdayprofile.dart';
+import 'package:birthdaytracker/models/birthday_profile.dart';
 import 'package:birthdaytracker/pages/edit_profile.dart';
 import 'package:flutter/material.dart';
-import '../pages/addprofile.dart';
+import '../pages/add_profile.dart';
 
 class NavigationHelper {
   void navigateHome(BuildContext context) {

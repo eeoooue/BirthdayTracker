@@ -1,5 +1,5 @@
-import 'package:birthdaytracker/models/profilestore.dart';
-import 'birthdayprofile.dart';
+import 'package:birthdaytracker/models/profile_store.dart';
+import 'birthday_profile.dart';
 
 class TimeHelper {
   final ProfileStore store = ProfileStore();

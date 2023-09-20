@@ -1,5 +1,5 @@
-import 'package:birthdaytracker/pages/homefeed.dart';
-import 'package:birthdaytracker/pages/profiledirectory.dart';
+import 'package:birthdaytracker/pages/home_feed.dart';
+import 'package:birthdaytracker/pages/profile_directory.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 

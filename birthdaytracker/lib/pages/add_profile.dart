@@ -1,7 +1,7 @@
 import 'package:birthdaytracker/models/hive_helper.dart';
 import 'package:birthdaytracker/models/nav_helper.dart';
 import 'package:flutter/material.dart';
-import '../models/birthdayprofile.dart';
+import '../models/birthday_profile.dart';
 
 class AddProfile extends StatefulWidget {
   const AddProfile({super.key});

@@ -1,6 +1,6 @@
 import 'package:birthdaytracker/models/hive_helper.dart';
 
-import 'birthdayprofile.dart';
+import 'birthday_profile.dart';
 
 class ProfileStore {
   List<BirthdayProfile> getProfiles() {
