@@ -30,7 +30,7 @@ class ProfileStore {
   }
 
   int alphabeticalComparison(BirthdayProfile a, BirthdayProfile b) {
-    return a.name.compareTo(b.name);
+    return a.name.toLowerCase().compareTo(b.name.toLowerCase());
   }
 
   List<BirthdayProfile> getChronologicalOrdering() {

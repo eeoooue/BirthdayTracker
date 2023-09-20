@@ -41,7 +41,7 @@ class _ProfileDirectoryState extends State<ProfileDirectory> {
     HashSet<String> seen = HashSet();
 
     for (BirthdayProfile profile in store.getAlphabeticalOrdering()) {
-      String firstChar = profile.name[0];
+      String firstChar = profile.name[0].toUpperCase();
       if (!seen.contains(firstChar)) {
         if (includeSectionMarkers) {
           elements.add(DirectorySectionMarker(firstChar));
