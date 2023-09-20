@@ -28,6 +28,12 @@ class _AddProfileState extends State<AddProfile> {
 
   _AddProfileState();
 
+  void checkBoxChanged(bool? value) {
+    setState(() {
+      includeYear = !includeYear;
+    });
+  }
+
   bool canSubmit() {
     if (_textController.text.isEmpty) {
       return false;
@@ -52,6 +58,7 @@ class _AddProfileState extends State<AddProfile> {
     if (includeYear) {
       profile.setYear(selectedTime.year);
     }
+    print("submitted! '${name}' : ${profile.getBirthdayString()}");
   }
 
   void _navigateBottomBar(int index) {
@@ -118,6 +125,16 @@ class _AddProfileState extends State<AddProfile> {
               color: Colors.grey[300],
               child: Text(dateButtonString),
             ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("Include Year?"),
+              Checkbox(
+                value: includeYear,
+                onChanged: (value) => checkBoxChanged(value),
+              ),
+            ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
