@@ -28,6 +28,14 @@ class _AddProfileState extends State<AddProfile> {
 
   _AddProfileState();
 
+  void _navigateHome() {
+    while (Navigator.canPop(context)) {
+      Navigator.pop(context);
+    }
+
+    Navigator.popAndPushNamed(context, "/homefeed");
+  }
+
   void checkBoxChanged(bool? value) {
     setState(() {
       includeYear = !includeYear;
@@ -59,6 +67,7 @@ class _AddProfileState extends State<AddProfile> {
       profile.setYear(selectedTime.year);
     }
     print("submitted! '${name}' : ${profile.getBirthdayString()}");
+    _navigateHome();
   }
 
   void _navigateBottomBar(int index) {
