@@ -1,3 +1,4 @@
+import 'package:birthdaytracker/models/hive_helper.dart';
 import 'package:flutter/material.dart';
 import '../models/birthdayprofile.dart';
 
@@ -21,7 +22,7 @@ class _AddProfileState extends State<AddProfile> {
   String getFormattedTime() {
     int month = selectedTime.month;
     int day = selectedTime.day;
-    BirthdayProfile profile = BirthdayProfile("formatting", month, day);
+    BirthdayProfile profile = BirthdayProfile(-1, "formatting", month, day);
 
     if (includeYear) {
       profile.setYear(selectedTime.year);
@@ -64,8 +65,9 @@ class _AddProfileState extends State<AddProfile> {
     String name = _textController.text;
     int month = selectedTime.month;
     int day = selectedTime.day;
+    int key = HiveHelper.getUnusedKey();
 
-    BirthdayProfile profile = BirthdayProfile(name, month, day);
+    BirthdayProfile profile = BirthdayProfile(key, name, month, day);
 
     if (includeYear) {
       profile.setYear(selectedTime.year);

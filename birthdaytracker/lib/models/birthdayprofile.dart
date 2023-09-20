@@ -18,10 +18,11 @@ class BirthdayProfile {
   int month;
   int day;
   int year = 0;
+  int key;
 
   bool includesYear = false;
 
-  BirthdayProfile(this.name, this.month, this.day);
+  BirthdayProfile(this.key, this.name, this.month, this.day);
 
   void setYear(int birthdayYear) {
     includesYear = true;

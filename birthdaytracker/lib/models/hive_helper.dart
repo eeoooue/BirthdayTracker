@@ -6,7 +6,7 @@ class HiveHelper {
   static final bdaysBox = Hive.box("bdays");
   static int id = 1;
 
-  int getUnusedKey() {
+  static int getUnusedKey() {
     while (namesBox.containsKey(id)) {
       id += 1;
     }
@@ -33,7 +33,8 @@ class HiveHelper {
 
       List<int> timings = interpretDate(encodedBday);
 
-      BirthdayProfile profile = BirthdayProfile(name, timings[1], timings[0]);
+      BirthdayProfile profile =
+          BirthdayProfile(key, name, timings[1], timings[0]);
 
       if (includesYear(encodedBday)) {
         profile.setYear(timings[2]);
