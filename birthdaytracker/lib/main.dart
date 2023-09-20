@@ -1,8 +1,16 @@
 import 'package:birthdaytracker/pages/homefeed.dart';
 import 'package:birthdaytracker/pages/profiledirectory.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+
+  Box namesBox = await Hive.openBox("names");
+  Box bdaysBox = await Hive.openBox("bdays");
+  await namesBox.clear();
+  await bdaysBox.clear();
+
   runApp(MyApp());
 }
 
