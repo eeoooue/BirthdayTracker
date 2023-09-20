@@ -1,7 +1,9 @@
 import 'package:birthdaytracker/models/birthdayprofile.dart';
+import 'package:birthdaytracker/models/nav_helper.dart';
 import 'package:flutter/material.dart';
 
 class EditProfileButton extends StatelessWidget {
+  final NavigationHelper navHelper = NavigationHelper();
   final BirthdayProfile profile;
 
   EditProfileButton(this.profile, {super.key});
@@ -11,7 +13,9 @@ class EditProfileButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: MaterialButton(
-        onPressed: () {},
+        onPressed: () {
+          navHelper.editProfile(context, profile);
+        },
         child: Text("Edit Profile"),
         textColor: Colors.white,
         color: Colors.blue,

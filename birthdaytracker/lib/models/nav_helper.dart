@@ -1,4 +1,7 @@
+import 'package:birthdaytracker/models/birthdayprofile.dart';
+import 'package:birthdaytracker/pages/edit_profile.dart';
 import 'package:flutter/material.dart';
+import '../pages/addprofile.dart';
 
 class NavigationHelper {
   void navigateHome(BuildContext context) {
@@ -15,5 +18,15 @@ class NavigationHelper {
       BottomNavigationBarItem(icon: Icon(Icons.people), label: "People"),
       BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings"),
     ];
+  }
+
+  void addProfile(BuildContext context) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => AddProfile()));
+  }
+
+  void editProfile(BuildContext context, BirthdayProfile profile) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => EditProfile(profile)));
   }
 }
