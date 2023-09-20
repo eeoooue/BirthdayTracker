@@ -8,8 +8,6 @@ void main() async {
 
   Box namesBox = await Hive.openBox("names");
   Box bdaysBox = await Hive.openBox("bdays");
-  await namesBox.clear();
-  await bdaysBox.clear();
 
   runApp(MyApp());
 }
