@@ -1,7 +1,6 @@
-import 'package:birthdaytracker/models/birthdayprofile.dart';
-import 'package:birthdaytracker/pages/viewprofile.dart';
+import 'package:birthdaytracker/models/birthday_profile.dart';
+import 'package:birthdaytracker/pages/view_profile.dart';
 import 'package:flutter/material.dart';
-
 import 'birthday_bar_datebox.dart';
 import 'birthday_bar_name.dart';
 import 'birthday_bar_picture.dart';

@@ -1,6 +1,6 @@
 import 'package:birthdaytracker/models/hive_helper.dart';
 
-import 'birthdayprofile.dart';
+import 'birthday_profile.dart';
 
 class ProfileStore {
   List<BirthdayProfile> getProfiles() {
@@ -30,7 +30,7 @@ class ProfileStore {
   }
 
   int alphabeticalComparison(BirthdayProfile a, BirthdayProfile b) {
-    return a.name.compareTo(b.name);
+    return a.name.toLowerCase().compareTo(b.name.toLowerCase());
   }
 
   List<BirthdayProfile> getChronologicalOrdering() {

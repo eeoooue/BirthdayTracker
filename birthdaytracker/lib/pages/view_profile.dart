@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/birthdayprofile.dart';
+import '../models/birthday_profile.dart';
 import '../widgets/delete_profile_button.dart';
 import '../widgets/edit_profile_button.dart';
 import '../widgets/profile_name_card.dart';

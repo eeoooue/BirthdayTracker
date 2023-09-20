@@ -1,4 +1,4 @@
-import 'package:birthdaytracker/models/birthdayprofile.dart';
+import 'package:birthdaytracker/models/birthday_profile.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class HiveHelper {
