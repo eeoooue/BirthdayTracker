@@ -1,7 +1,9 @@
 import 'dart:collection';
 
+import 'package:birthdaytracker/pages/addprofile.dart';
 import 'package:flutter/material.dart';
 import '../models/birthdayprofile.dart';
+import '../models/nav_helper.dart';
 import '../widgets/directoryelements.dart';
 import '../models/profilestore.dart';
 
@@ -17,9 +19,15 @@ class ProfileDirectory extends StatefulWidget {
 class _ProfileDirectoryState extends State<ProfileDirectory> {
   final List<DirectoryElement> elements = List.empty(growable: true);
   final bool includeSectionMarkers = true;
+  final NavigationHelper navHelper = NavigationHelper();
 
   _ProfileDirectoryState() {
     populateElements();
+  }
+
+  void _addProfile() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => AddProfile()));
   }
 
   void _navigateBottomBar(int index) {
@@ -69,12 +77,18 @@ class _ProfileDirectoryState extends State<ProfileDirectory> {
       bottomNavigationBar: BottomNavigationBar(
           onTap: _navigateBottomBar,
           currentIndex: 1,
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-            BottomNavigationBarItem(icon: Icon(Icons.people), label: "People"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.settings), label: "Settings"),
-          ]),
+          items: navHelper.getNavBarItems()),
+      floatingActionButton: SizedBox(
+        height: 100,
+        width: 100,
+        child: FittedBox(
+          child: FloatingActionButton(
+              onPressed: () {
+                _addProfile();
+              },
+              child: const Icon(Icons.add)),
+        ),
+      ),
       body: Column(children: [
         Expanded(
             child: ListView.builder(
