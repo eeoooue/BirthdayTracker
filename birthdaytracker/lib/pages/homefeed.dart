@@ -61,12 +61,12 @@ class _HomeFeedState extends State<HomeFeed> {
       ]),
       body: Column(children: [
         Container(
-          height: 30,
-          color: Colors.grey[400],
+          height: 32,
+          color: Colors.grey[300],
           child: Center(
               child: Text(
             getTodayAsText(),
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.black54),
           )),
         ),
         Expanded(
