@@ -13,6 +13,11 @@ class HiveHelper {
     return id;
   }
 
+  static void clearData() async {
+    await namesBox.clear();
+    await bdaysBox.clear();
+  }
+
   static List<BirthdayProfile> getAllProfiles() {
     List<BirthdayProfile> profiles = List.empty(growable: true);
 

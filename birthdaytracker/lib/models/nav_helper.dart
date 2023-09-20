@@ -32,7 +32,7 @@ class NavigationHelper {
         }
       case 2:
         {
-          return;
+          Navigator.popAndPushNamed(context, "/settings");
         }
     }
   }
