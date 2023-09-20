@@ -73,6 +73,9 @@ class _AddProfileState extends State<AddProfile> {
       profile.setYear(selectedTime.year);
     }
     print("submitted! '${name}' : ${profile.getBirthdayString()}");
+
+    HiveHelper.saveProfile(profile);
+
     _navigateHome();
   }
 
