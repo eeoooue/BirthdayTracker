@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import '../models/birthdayprofile.dart';
-import '../widgets/profileelements.dart';
+import '../widgets/delete_profile_button.dart';
+import '../widgets/edit_profile_button.dart';
+import '../widgets/profile_name_card.dart';
+import '../widgets/profile_picture.dart';
+import '../widgets/bordered_birthday.dart';
 
 class ViewProfile extends StatefulWidget {
   final BirthdayProfile profile;
@@ -45,16 +49,10 @@ class _ViewProfileState extends State<ViewProfile> {
         ),
         backgroundColor: Colors.blue,
       ),
-      bottomNavigationBar:
-          BottomNavigationBar(onTap: _navigateBottomBar, items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-        BottomNavigationBarItem(icon: Icon(Icons.people), label: "People"),
-        BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings"),
-      ]),
       body: Column(children: [
         ProfilePicture(profile),
         ProfileNameCard(profile),
-        FormattedBirthdayWithBorder(profile),
+        BorderedBirthday(profile),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

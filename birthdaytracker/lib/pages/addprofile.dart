@@ -116,12 +116,6 @@ class _AddProfileState extends State<AddProfile> {
         ),
         backgroundColor: Colors.blue,
       ),
-      bottomNavigationBar:
-          BottomNavigationBar(onTap: _navigateBottomBar, items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-        BottomNavigationBarItem(icon: Icon(Icons.people), label: "People"),
-        BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings"),
-      ]),
       body: Column(
         children: [
           Padding(
