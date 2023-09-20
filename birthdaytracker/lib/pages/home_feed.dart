@@ -31,16 +31,7 @@ class _HomeFeedState extends State<HomeFeed> {
   }
 
   void _navigateBottomBar(int index) {
-    switch (index) {
-      case 0:
-        {
-          Navigator.popAndPushNamed(context, "/homefeed");
-        }
-      case 1:
-        {
-          Navigator.popAndPushNamed(context, "/profiledirectory");
-        }
-    }
+    navHelper.navigateBottomBar(context, index);
   }
 
   @override
