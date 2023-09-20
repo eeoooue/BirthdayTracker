@@ -162,7 +162,9 @@ class _AddProfileState extends State<AddProfile> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   child: Text("Cancel"),
                   color: Colors.grey[200],
                   textColor: Colors.red,
