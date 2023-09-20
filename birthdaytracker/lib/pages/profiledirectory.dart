@@ -1,6 +1,4 @@
 import 'dart:collection';
-
-import 'package:birthdaytracker/pages/addprofile.dart';
 import 'package:flutter/material.dart';
 import '../models/birthdayprofile.dart';
 import '../models/nav_helper.dart';
@@ -23,11 +21,6 @@ class _ProfileDirectoryState extends State<ProfileDirectory> {
 
   _ProfileDirectoryState() {
     populateElements();
-  }
-
-  void _addProfile() {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => AddProfile()));
   }
 
   void _navigateBottomBar(int index) {
@@ -84,7 +77,7 @@ class _ProfileDirectoryState extends State<ProfileDirectory> {
         child: FittedBox(
           child: FloatingActionButton(
               onPressed: () {
-                _addProfile();
+                navHelper.addProfile(context);
               },
               child: const Icon(Icons.add)),
         ),
