@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import '../models/timehelper.dart';
 import '../widgets/birthdaybar.dart';
 import '../models/birthdayprofile.dart';
-import '../models/profilestore.dart';
 
 class HomeFeed extends StatefulWidget {
   const HomeFeed({super.key});
@@ -13,8 +13,7 @@ class HomeFeed extends StatefulWidget {
 }
 
 class _HomeFeedState extends State<HomeFeed> {
-  final List<BirthdayProfile> profiles =
-      ProfileStore().getChronologicalOrdering();
+  final List<BirthdayProfile> profiles = TimeHelper().getClosestBirthdays();
 
   _HomeFeedState();
 
