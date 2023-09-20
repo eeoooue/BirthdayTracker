@@ -1,8 +1,6 @@
 import 'dart:collection';
 
 import 'package:birthdaytracker/pages/addprofile.dart';
-import 'package:birthdaytracker/pages/homefeed.dart';
-import 'package:birthdaytracker/pages/viewprofile.dart';
 import 'package:flutter/material.dart';
 import '../models/birthdayprofile.dart';
 import '../widgets/directoryelements.dart';
