@@ -15,13 +15,18 @@ class _AddProfileState extends State<AddProfile> {
   final _textController = TextEditingController();
 
   bool includeYear = false;
-  DateTime selectedTime = DateTime(2500);
+  DateTime selectedTime = DateTime.now();
   String dateButtonString = "Select Date";
+  bool dateHasChanged = false;
 
   String getFormattedTime() {
     int month = selectedTime.month;
     int day = selectedTime.day;
     BirthdayProfile profile = BirthdayProfile("formatting", month, day);
+
+    if (includeYear) {
+      profile.setYear(selectedTime.year);
+    }
 
     return profile.getBirthdayString();
   }
@@ -39,6 +44,9 @@ class _AddProfileState extends State<AddProfile> {
   void checkBoxChanged(bool? value) {
     setState(() {
       includeYear = !includeYear;
+      if (dateHasChanged) {
+        dateButtonString = getFormattedTime();
+      }
     });
   }
 
@@ -46,10 +54,7 @@ class _AddProfileState extends State<AddProfile> {
     if (_textController.text.isEmpty) {
       return false;
     }
-    if (selectedTime.year == 2500) {
-      return false;
-    }
-    return true;
+    return dateHasChanged;
   }
 
   void submit() {
@@ -96,6 +101,7 @@ class _AddProfileState extends State<AddProfile> {
         .then((value) {
       setState(() {
         selectedTime = value!;
+        dateHasChanged = true;
         dateButtonString = getFormattedTime();
       });
     });
