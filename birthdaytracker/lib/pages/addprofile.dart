@@ -1,4 +1,5 @@
 import 'package:birthdaytracker/models/hive_helper.dart';
+import 'package:birthdaytracker/models/nav_helper.dart';
 import 'package:flutter/material.dart';
 import '../models/birthdayprofile.dart';
 
@@ -12,6 +13,7 @@ class AddProfile extends StatefulWidget {
 }
 
 class _AddProfileState extends State<AddProfile> {
+  final NavigationHelper navHelper = NavigationHelper();
   final _textController = TextEditingController();
 
   bool includeYear = false;
@@ -32,14 +34,6 @@ class _AddProfileState extends State<AddProfile> {
   }
 
   _AddProfileState();
-
-  void _navigateHome() {
-    while (Navigator.canPop(context)) {
-      Navigator.pop(context);
-    }
-
-    Navigator.popAndPushNamed(context, "/homefeed");
-  }
 
   void checkBoxChanged(bool? value) {
     setState(() {
@@ -72,11 +66,9 @@ class _AddProfileState extends State<AddProfile> {
     if (includeYear) {
       profile.setYear(selectedTime.year);
     }
-    print("submitted! '${name}' : ${profile.getBirthdayString()}");
 
     HiveHelper.saveProfile(profile);
-
-    _navigateHome();
+    navHelper.navigateHome(context);
   }
 
   void _showDatePicker() {
