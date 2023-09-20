@@ -17,6 +17,17 @@ class _HomeFeedState extends State<HomeFeed> {
 
   _HomeFeedState();
 
+  String getTodayAsText() {
+    int day = DateTime.now().day;
+    int month = DateTime.now().month;
+    int year = DateTime.now().year;
+
+    BirthdayProfile today = BirthdayProfile("Today", month, day);
+    today.setYear(year);
+
+    return today.getBirthdayString();
+  }
+
   void _navigateBottomBar(int index) {
     switch (index) {
       case 0:
@@ -51,7 +62,12 @@ class _HomeFeedState extends State<HomeFeed> {
       body: Column(children: [
         Container(
           height: 30,
-          color: Colors.grey,
+          color: Colors.grey[400],
+          child: Center(
+              child: Text(
+            getTodayAsText(),
+            style: TextStyle(color: Colors.black),
+          )),
         ),
         Expanded(
             child: ListView.builder(
