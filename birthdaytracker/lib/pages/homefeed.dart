@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/timehelper.dart';
-import '../widgets/birthdaybar.dart';
 import '../models/birthdayprofile.dart';
+import '../widgets/birthday_profile_bar.dart';
 
 class HomeFeed extends StatefulWidget {
   const HomeFeed({super.key});
