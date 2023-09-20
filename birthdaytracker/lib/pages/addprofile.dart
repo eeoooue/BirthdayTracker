@@ -1,3 +1,5 @@
+import 'package:birthdaytracker/models/hive_helper.dart';
+import 'package:birthdaytracker/models/nav_helper.dart';
 import 'package:flutter/material.dart';
 import '../models/birthdayprofile.dart';
 
@@ -11,6 +13,7 @@ class AddProfile extends StatefulWidget {
 }
 
 class _AddProfileState extends State<AddProfile> {
+  final NavigationHelper navHelper = NavigationHelper();
   final _textController = TextEditingController();
 
   bool includeYear = false;
@@ -21,7 +24,7 @@ class _AddProfileState extends State<AddProfile> {
   String getFormattedTime() {
     int month = selectedTime.month;
     int day = selectedTime.day;
-    BirthdayProfile profile = BirthdayProfile("formatting", month, day);
+    BirthdayProfile profile = BirthdayProfile(-1, "formatting", month, day);
 
     if (includeYear) {
       profile.setYear(selectedTime.year);
@@ -31,14 +34,6 @@ class _AddProfileState extends State<AddProfile> {
   }
 
   _AddProfileState();
-
-  void _navigateHome() {
-    while (Navigator.canPop(context)) {
-      Navigator.pop(context);
-    }
-
-    Navigator.popAndPushNamed(context, "/homefeed");
-  }
 
   void checkBoxChanged(bool? value) {
     setState(() {
@@ -64,14 +59,16 @@ class _AddProfileState extends State<AddProfile> {
     String name = _textController.text;
     int month = selectedTime.month;
     int day = selectedTime.day;
+    int key = HiveHelper.getUnusedKey();
 
-    BirthdayProfile profile = BirthdayProfile(name, month, day);
+    BirthdayProfile profile = BirthdayProfile(key, name, month, day);
 
     if (includeYear) {
       profile.setYear(selectedTime.year);
     }
-    print("submitted! '${name}' : ${profile.getBirthdayString()}");
-    _navigateHome();
+
+    HiveHelper.saveProfile(profile);
+    navHelper.navigateHome(context);
   }
 
   void _showDatePicker() {

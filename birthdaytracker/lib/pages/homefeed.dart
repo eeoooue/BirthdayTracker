@@ -24,7 +24,7 @@ class _HomeFeedState extends State<HomeFeed> {
     int month = DateTime.now().month;
     int year = DateTime.now().year;
 
-    BirthdayProfile today = BirthdayProfile("Today", month, day);
+    BirthdayProfile today = BirthdayProfile(-1, "Today", month, day);
     today.setYear(year);
 
     return today.getBirthdayString();

@@ -1,9 +1,10 @@
+import 'package:birthdaytracker/models/hive_helper.dart';
+
 import 'birthdayprofile.dart';
 
 class ProfileStore {
   List<BirthdayProfile> getProfiles() {
-    List<BirthdayProfile> profiles = List.empty(growable: true);
-    return profiles;
+    return HiveHelper.getAllProfiles();
   }
 
   List<String> getNames() {
