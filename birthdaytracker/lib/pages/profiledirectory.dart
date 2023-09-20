@@ -1,5 +1,8 @@
 import 'dart:collection';
 
+import 'package:birthdaytracker/pages/addprofile.dart';
+import 'package:birthdaytracker/pages/homefeed.dart';
+import 'package:birthdaytracker/pages/viewprofile.dart';
 import 'package:flutter/material.dart';
 import '../models/birthdayprofile.dart';
 import '../widgets/directoryelements.dart';
@@ -20,6 +23,11 @@ class _ProfileDirectoryState extends State<ProfileDirectory> {
 
   _ProfileDirectoryState() {
     populateElements();
+  }
+
+  void _addProfile() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => AddProfile()));
   }
 
   void _navigateBottomBar(int index) {
@@ -69,12 +77,23 @@ class _ProfileDirectoryState extends State<ProfileDirectory> {
       bottomNavigationBar: BottomNavigationBar(
           onTap: _navigateBottomBar,
           currentIndex: 1,
-          items: [
+          items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
             BottomNavigationBarItem(icon: Icon(Icons.people), label: "People"),
             BottomNavigationBarItem(
                 icon: Icon(Icons.settings), label: "Settings"),
           ]),
+      floatingActionButton: SizedBox(
+        height: 100,
+        width: 100,
+        child: FittedBox(
+          child: FloatingActionButton(
+              onPressed: () {
+                _addProfile();
+              },
+              child: const Icon(Icons.add)),
+        ),
+      ),
       body: Column(children: [
         Expanded(
             child: ListView.builder(
