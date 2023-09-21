@@ -44,7 +44,7 @@ class _ViewProfileState extends State<ViewProfile> {
         ),
         backgroundColor: Colors.blue,
       ),
-      body: Column(children: [
+      body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         ProfilePicture(profile, 150),
         ProfileNameCard(profile),
         BorderedBirthday(profile),

@@ -104,6 +104,7 @@ class _AddProfileState extends State<AddProfile> {
         backgroundColor: Colors.blue,
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
             padding: EdgeInsets.all(20),

@@ -146,6 +146,7 @@ class _EditProfileState extends State<EditProfile> {
         backgroundColor: Colors.blue,
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
             padding: const EdgeInsets.all(20),
