@@ -40,16 +40,19 @@ class _HomeFeedState extends State<HomeFeed> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(),
+      backgroundColor: Colors.grey[300],
       bottomNavigationBar: BottomNavigationBar(
           onTap: _navigateBottomBar, items: navHelper.getNavBarItems()),
       body: Column(children: [
         const CurrentDateBanner(),
         Expanded(
-            child: ListView.builder(
-                itemCount: profiles.length,
-                itemBuilder: (context, index) {
-                  return BirthdayProfileBar(profiles[index]);
-                }))
+            child: ClipRect(
+          child: ListView.builder(
+              itemCount: profiles.length,
+              itemBuilder: (context, index) {
+                return BirthdayProfileBar(profiles[index]);
+              }),
+        ))
       ]),
     );
   }
