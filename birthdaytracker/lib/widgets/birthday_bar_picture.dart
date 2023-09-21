@@ -5,11 +5,10 @@ import 'package:flutter/material.dart';
 class BdarBarPicture extends StatelessWidget {
   final BirthdayProfile profile;
 
-  BdarBarPicture(this.profile, {super.key});
+  const BdarBarPicture(this.profile, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
       height: 80,
       width: 80,

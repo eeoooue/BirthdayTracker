@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class ProfilePicture extends StatelessWidget {
   final BirthdayProfile profile;
 
-  ProfilePicture(this.profile, {super.key});
+  const ProfilePicture(this.profile, {super.key});
 
   @override
   Widget build(BuildContext context) {

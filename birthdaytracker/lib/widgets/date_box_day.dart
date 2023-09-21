@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class DateBoxDay extends StatelessWidget {
   final int day;
 
-  DateBoxDay(this.day, {super.key});
+  const DateBoxDay(this.day, {super.key});
 
   @override
   Widget build(BuildContext context) {

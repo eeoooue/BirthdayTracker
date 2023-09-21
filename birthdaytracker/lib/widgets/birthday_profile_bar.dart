@@ -8,7 +8,7 @@ import 'birthday_bar_picture.dart';
 class BirthdayProfileBar extends StatelessWidget {
   final BirthdayProfile profile;
 
-  BirthdayProfileBar(this.profile, {super.key});
+  const BirthdayProfileBar(this.profile, {super.key});
 
   void _openProfile(BuildContext c) {
     final route = MaterialPageRoute(builder: (c) => ViewProfile(profile));

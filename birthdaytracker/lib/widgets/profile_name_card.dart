@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class ProfileNameCard extends StatelessWidget {
   final BirthdayProfile profile;
 
-  ProfileNameCard(this.profile, {super.key});
+  const ProfileNameCard(this.profile, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class ProfileNameCard extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Text(
         profile.name,
-        style: TextStyle(fontSize: 32),
+        style: const TextStyle(fontSize: 32),
       ),
     );
   }
