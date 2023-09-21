@@ -28,10 +28,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(),
-      bottomNavigationBar: BottomNavigationBar(
-          onTap: _navigateBottomBar,
-          currentIndex: 2,
-          items: navHelper.getNavBarItems()),
+      bottomNavigationBar: navHelper.getBottomNav(_navigateBottomBar, 2),
       body: Center(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

@@ -46,4 +46,15 @@ class NavigationHelper {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => EditProfile(profile)));
   }
+
+  BottomNavigationBar getBottomNav(Function(int) onTapFunction, int index) {
+    return BottomNavigationBar(
+        backgroundColor: const Color.fromRGBO(40, 30, 42, 1),
+        selectedItemColor: const Color.fromRGBO(155, 80, 148, 1),
+        // selectedItemColor: const Color.fromRGBO(168, 158, 168, 1),
+        unselectedItemColor: const Color.fromRGBO(0, 0, 0, 0.9),
+        currentIndex: index,
+        onTap: onTapFunction,
+        items: getNavBarItems());
+  }
 }
