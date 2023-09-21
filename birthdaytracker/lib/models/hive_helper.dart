@@ -48,6 +48,7 @@ class HiveHelper {
   static void deleteProfile(BirthdayProfile profile) {
     namesBox.delete(profile.key);
     bdaysBox.delete(profile.key);
+    picsBox.delete(profile.key);
   }
 
   static String encodeDate(BirthdayProfile profile) {
