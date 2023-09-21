@@ -1,5 +1,7 @@
 import 'package:birthdaytracker/models/hive_helper.dart';
 import 'package:birthdaytracker/models/nav_helper.dart';
+import 'package:birthdaytracker/widgets/positive_action_button.dart';
+import 'package:birthdaytracker/widgets/negative_action_button.dart';
 import 'package:flutter/material.dart';
 import '../models/birthday_profile.dart';
 
@@ -51,7 +53,7 @@ class _AddProfileState extends State<AddProfile> {
     return dateHasChanged;
   }
 
-  void submit() {
+  void _submit() {
     if (!canSubmit()) {
       return;
     }
@@ -84,6 +86,10 @@ class _AddProfileState extends State<AddProfile> {
         dateButtonString = getFormattedTime();
       });
     });
+  }
+
+  void _cancel() {
+    Navigator.pop(context);
   }
 
   @override
@@ -127,28 +133,8 @@ class _AddProfileState extends State<AddProfile> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: MaterialButton(
-                  onPressed: () {
-                    submit();
-                  },
-                  child: Text("Submit"),
-                  color: Colors.blue,
-                  textColor: Colors.white,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text("Cancel"),
-                  color: Colors.grey[200],
-                  textColor: Colors.red,
-                ),
-              ),
+              PositiveActionButton("Submit", _submit),
+              NegativeActionButton("Cancel", _cancel),
             ],
           )
         ],
