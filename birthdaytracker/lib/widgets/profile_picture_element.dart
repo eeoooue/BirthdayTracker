@@ -5,7 +5,7 @@ import 'dart:io';
 
 class ProfilePictureElement extends StatelessWidget {
   final BirthdayProfile profile;
-  final blank = Container(height: 100, width: 100, color: Colors.grey[400]);
+  final blank = Container(height: 100, width: 100, color: Colors.transparent);
 
   ProfilePictureElement(this.profile, {super.key});
 

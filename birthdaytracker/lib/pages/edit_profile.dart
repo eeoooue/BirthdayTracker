@@ -143,7 +143,7 @@ class _EditProfileState extends State<EditProfile> {
           "Edit Profile",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color.fromRGBO(40, 30, 42, 1),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
