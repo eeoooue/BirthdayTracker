@@ -38,7 +38,7 @@ class _ViewProfileState extends State<ViewProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "View Profile",
           style: TextStyle(color: Colors.white),
         ),
