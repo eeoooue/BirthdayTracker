@@ -48,6 +48,7 @@ class HiveHelper {
   static void deleteProfile(BirthdayProfile profile) {
     namesBox.delete(profile.key);
     bdaysBox.delete(profile.key);
+    picsBox.delete(profile.key);
   }
 
   static String encodeDate(BirthdayProfile profile) {
@@ -104,7 +105,6 @@ class HiveHelper {
     List<String> arr = encodedBday.split('-');
 
     if (arr.length != 3) {
-      print("the arr split didn't work");
       throw Exception("the arr split didn't work");
     }
 

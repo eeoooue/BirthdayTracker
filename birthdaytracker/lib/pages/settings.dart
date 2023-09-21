@@ -1,6 +1,8 @@
+import 'package:birthdaytracker/widgets/neutral_action_button.dart';
 import 'package:flutter/material.dart';
 import '../models/hive_helper.dart';
 import '../models/nav_helper.dart';
+import '../widgets/my_app_bar.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -18,18 +20,14 @@ class _SettingsPageState extends State<SettingsPage> {
     navHelper.navigateBottomBar(context, index);
   }
 
+  void _clearData() {
+    HiveHelper.clearData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Center(
-          child: Text(
-            "BirthdayTracker",
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
-        backgroundColor: Colors.blue,
-      ),
+      appBar: MyAppBar(),
       bottomNavigationBar: BottomNavigationBar(
           onTap: _navigateBottomBar,
           currentIndex: 2,
@@ -38,18 +36,7 @@ class _SettingsPageState extends State<SettingsPage> {
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: MaterialButton(
-                  onPressed: () {
-                    HiveHelper.clearData();
-                  },
-                  color: Colors.grey[300],
-                  child: Text("Clear Data"),
-                ),
-              )
-            ]),
+            children: [NeutralActionButton("Clear Data", _clearData)]),
       ),
     );
   }

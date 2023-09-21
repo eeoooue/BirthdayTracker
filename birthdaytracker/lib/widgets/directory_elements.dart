@@ -29,7 +29,7 @@ class DirectoryProfile extends DirectoryElement {
             padding: const EdgeInsets.all(12),
             child: Text(
               profile.name,
-              style: TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 20),
             ),
           ),
         ]),
