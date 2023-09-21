@@ -8,6 +8,7 @@ void main() async {
   await Hive.initFlutter();
   await Hive.openBox("names");
   await Hive.openBox("bdays");
+  await Hive.openBox("pictures");
 
   runApp(MyApp());
 }

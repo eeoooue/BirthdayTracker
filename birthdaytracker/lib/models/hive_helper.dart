@@ -4,6 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 class HiveHelper {
   static final namesBox = Hive.box("names");
   static final bdaysBox = Hive.box("bdays");
+  static final picsBox = Hive.box("pictures");
   static int id = 1;
 
   static int getUnusedKey() {
@@ -13,9 +14,18 @@ class HiveHelper {
     return id;
   }
 
+  static String getImagePath(int key) {
+    if (picsBox.containsKey(key)) {
+      return picsBox.get(key);
+    }
+
+    return 'assets/TestPicture.jpg';
+  }
+
   static void clearData() async {
     await namesBox.clear();
     await bdaysBox.clear();
+    await picsBox.clear();
   }
 
   static List<BirthdayProfile> getAllProfiles() {
