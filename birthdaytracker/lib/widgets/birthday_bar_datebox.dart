@@ -14,7 +14,10 @@ class BdayBarDateBox extends StatelessWidget {
       height: 80,
       width: 80,
       color: Colors.black45,
-      child: Column(children: [DateBoxMonth(month), DateBoxDay(day)]),
+      child: Column(children: [
+        Expanded(flex: 2, child: DateBoxMonth(month)),
+        Expanded(flex: 3, child: DateBoxDay(day)),
+      ]),
     );
   }
 }

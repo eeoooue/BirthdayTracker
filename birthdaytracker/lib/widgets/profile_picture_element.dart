@@ -25,12 +25,10 @@ class ProfilePictureElement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ClipOval(
-        child: FittedBox(
-          fit: BoxFit.cover,
-          child: getChild(),
-        ),
+    return ClipOval(
+      child: FittedBox(
+        fit: BoxFit.cover,
+        child: getChild(),
       ),
     );
   }

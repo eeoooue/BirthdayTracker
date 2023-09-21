@@ -21,11 +21,8 @@ class DateBoxMonth extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 2,
-      child: Center(
-          child: Text(months[month - 1],
-              style: const TextStyle(color: Colors.white, fontSize: 16))),
-    );
+    return Center(
+        child: Text(months[month - 1],
+            style: const TextStyle(color: Colors.white, fontSize: 16)));
   }
 }

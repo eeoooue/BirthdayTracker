@@ -31,7 +31,7 @@ class BirthdayProfileBar extends StatelessWidget {
             child:
                 Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
               ProfilePicture(profile, 68),
-              BdayBarName(profile.name),
+              Expanded(child: BdayBarName(profile.name)),
               BdayBarDateBox(profile.month, profile.day),
             ]),
           ),

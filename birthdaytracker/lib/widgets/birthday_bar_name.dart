@@ -7,13 +7,12 @@ class BdayBarName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Padding(
+    return Padding(
       padding: const EdgeInsets.all(16),
       child: Text(
         name,
         style: const TextStyle(fontSize: 22, color: Colors.black87),
       ),
-    ));
+    );
   }
 }
