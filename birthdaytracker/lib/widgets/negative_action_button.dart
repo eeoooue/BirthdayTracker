@@ -4,7 +4,7 @@ class NegativeActionButton extends StatelessWidget {
   final String buttonText;
   final Function myFunction;
 
-  NegativeActionButton(this.buttonText, this.myFunction);
+  const NegativeActionButton(this.buttonText, this.myFunction, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +14,9 @@ class NegativeActionButton extends StatelessWidget {
         onPressed: () {
           myFunction();
         },
-        child: Text(buttonText),
         color: Colors.grey[200],
         textColor: Colors.red,
+        child: Text(buttonText),
       ),
     );
   }
