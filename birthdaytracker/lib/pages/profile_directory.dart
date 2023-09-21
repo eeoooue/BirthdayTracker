@@ -43,8 +43,6 @@ class _ProfileDirectoryState extends State<ProfileDirectory> {
       }
       elements.add(DirectoryProfile(profile));
     }
-
-    print("${elements.length} elements found");
   }
 
   @override
