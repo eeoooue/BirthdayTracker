@@ -1,5 +1,8 @@
 import 'package:birthdaytracker/models/hive_helper.dart';
 import 'package:birthdaytracker/models/nav_helper.dart';
+import 'package:birthdaytracker/widgets/negative_action_button.dart';
+import 'package:birthdaytracker/widgets/neutral_action_button.dart';
+import 'package:birthdaytracker/widgets/positive_action_button.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import '../models/birthday_profile.dart';
@@ -65,6 +68,10 @@ class _EditProfileState extends State<EditProfile> {
     });
   }
 
+  void _cancel() {
+    Navigator.pop(context);
+  }
+
   void submitChanges() {
     if (_textController.text.isEmpty) {
       return;
@@ -110,7 +117,6 @@ class _EditProfileState extends State<EditProfile> {
   }
 
   Future _addPhoto() async {
-    // Step 1: Retrieve image from picker
     profilePhoto = await ImagePicker().pickImage(source: ImageSource.gallery);
   }
 
@@ -142,31 +148,15 @@ class _EditProfileState extends State<EditProfile> {
       body: Column(
         children: [
           Padding(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: TextField(
               controller: _textController,
               decoration: const InputDecoration(
                   hintText: "Name", border: OutlineInputBorder()),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: MaterialButton(
-              onPressed: () {
-                _addPhoto();
-              },
-              color: Colors.grey[300],
-              child: Text(photoButtonText),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: MaterialButton(
-              onPressed: _showDatePicker,
-              color: Colors.grey[300],
-              child: Text(dateButtonString),
-            ),
-          ),
+          NeutralActionButton(photoButtonText, _addPhoto),
+          NeutralActionButton(dateButtonString, _showDatePicker),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -180,28 +170,8 @@ class _EditProfileState extends State<EditProfile> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: MaterialButton(
-                  onPressed: () {
-                    submitChanges();
-                  },
-                  child: Text("Save Changes"),
-                  color: Colors.blue,
-                  textColor: Colors.white,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text("Cancel"),
-                  color: Colors.grey[200],
-                  textColor: Colors.red,
-                ),
-              ),
+              PositiveActionButton("Save", submitChanges),
+              NegativeActionButton("Cancel", _cancel),
             ],
           )
         ],
