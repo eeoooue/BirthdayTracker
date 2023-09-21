@@ -1,4 +1,5 @@
 import 'package:birthdaytracker/models/birthday_profile.dart';
+import 'package:birthdaytracker/widgets/profile_picture_element.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePicture extends StatelessWidget {
@@ -10,13 +11,10 @@ class ProfilePicture extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8),
-      child: Container(
+      child: SizedBox(
         height: 150,
         width: 150,
-        decoration: BoxDecoration(
-          color: Colors.black26,
-          borderRadius: BorderRadius.circular(1000),
-        ),
+        child: ProfilePictureElement(profile),
       ),
     );
   }
