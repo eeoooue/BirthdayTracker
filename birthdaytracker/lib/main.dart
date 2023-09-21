@@ -1,6 +1,4 @@
 import 'package:birthdaytracker/pages/home_feed.dart';
-import 'package:birthdaytracker/pages/profile_directory.dart';
-import 'package:birthdaytracker/pages/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -26,8 +24,6 @@ class MyApp extends StatelessWidget {
       home: HomeFeed(),
       routes: {
         '/homefeed': (context) => HomeFeed(),
-        '/profiledirectory': (context) => ProfileDirectory(),
-        '/settings': (context) => SettingsPage(),
       },
     );
   }
