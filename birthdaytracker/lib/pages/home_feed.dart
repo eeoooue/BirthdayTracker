@@ -32,17 +32,6 @@ class _HomeFeedState extends State<HomeFeed> {
     activePageBody = getHomeBody();
   }
 
-  String getTodayAsText() {
-    int day = DateTime.now().day;
-    int month = DateTime.now().month;
-    int year = DateTime.now().year;
-
-    BirthdayProfile today = BirthdayProfile(-1, "Today", month, day);
-    today.setYear(year);
-
-    return today.getBirthdayString();
-  }
-
   void _navigateBottomBar(int index) {
     pageIndex = index;
 
@@ -71,15 +60,6 @@ class _HomeFeedState extends State<HomeFeed> {
     HiveHelper.clearData();
   }
 
-  Widget getSettingsBody() {
-    return Center(
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [NeutralActionButton("Clear Data", _clearData)]),
-    );
-  }
-
   Widget getHomeBody() {
     return Column(children: [
       const CurrentDateBanner(),
@@ -105,6 +85,15 @@ class _HomeFeedState extends State<HomeFeed> {
                 return elements[index];
               }))
     ]);
+  }
+
+  Widget getSettingsBody() {
+    return Center(
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [NeutralActionButton("Clear Data", _clearData)]),
+    );
   }
 
   List<DirectoryElement> getDirectoryElements() {
