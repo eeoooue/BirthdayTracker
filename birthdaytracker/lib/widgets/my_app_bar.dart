@@ -9,6 +9,6 @@ class MyAppBar extends AppBar {
               style: TextStyle(color: Colors.white),
             ),
           ),
-          backgroundColor: Color.fromRGBO(40, 30, 42, 1),
+          backgroundColor: const Color.fromRGBO(40, 30, 42, 1),
         );
 }
