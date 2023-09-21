@@ -17,19 +17,25 @@ class BirthdayProfileBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      onPressed: () {
-        _openProfile(context);
-      },
-      child: Container(
-        color: Colors.grey[300],
-        height: 80,
-        margin: const EdgeInsets.only(top: 10),
-        child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-          BdarBarPicture(profile),
-          BdayBarName(profile.name),
-          BdayBarDateBox(profile.month, profile.day),
-        ]),
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: MaterialButton(
+        onPressed: () {
+          _openProfile(context);
+        },
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Container(
+            color: Colors.grey[300],
+            height: 80,
+            child:
+                Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+              BdarBarPicture(profile),
+              BdayBarName(profile.name),
+              BdayBarDateBox(profile.month, profile.day),
+            ]),
+          ),
+        ),
       ),
     );
   }

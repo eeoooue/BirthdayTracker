@@ -10,12 +10,10 @@ class BdayBarDateBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-
     return Container(
       height: 80,
       width: 80,
-      color: Colors.black38,
+      color: Colors.black45,
       child: Column(children: [DateBoxMonth(month), DateBoxDay(day)]),
     );
   }
