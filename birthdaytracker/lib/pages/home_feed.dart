@@ -1,9 +1,11 @@
 import 'dart:collection';
 
+import 'package:birthdaytracker/models/hive_helper.dart';
 import 'package:birthdaytracker/models/nav_helper.dart';
 import 'package:birthdaytracker/models/profile_store.dart';
 import 'package:birthdaytracker/widgets/directory_elements.dart';
 import 'package:birthdaytracker/widgets/my_app_bar.dart';
+import 'package:birthdaytracker/widgets/neutral_action_button.dart';
 import 'package:flutter/material.dart';
 import '../models/time_helper.dart';
 import '../models/birthday_profile.dart';
@@ -22,8 +24,12 @@ class HomeFeed extends StatefulWidget {
 class _HomeFeedState extends State<HomeFeed> {
   final List<BirthdayProfile> profiles = TimeHelper().getClosestBirthdays();
   final NavigationHelper navHelper = NavigationHelper();
+  int pageIndex = 0;
+  Widget activePageBody = Container();
 
-  _HomeFeedState();
+  _HomeFeedState() {
+    activePageBody = getHomeBody();
+  }
 
   String getTodayAsText() {
     int day = DateTime.now().day;
@@ -37,7 +43,37 @@ class _HomeFeedState extends State<HomeFeed> {
   }
 
   void _navigateBottomBar(int index) {
-    navHelper.navigateBottomBar(context, index);
+    pageIndex = index;
+
+    setState(() {
+      switch (pageIndex) {
+        case 0:
+          {
+            activePageBody = getHomeBody();
+          }
+        case 1:
+          {
+            activePageBody = getDirectoryBody();
+          }
+        case 2:
+          {
+            activePageBody = getSettingsBody();
+          }
+      }
+    });
+  }
+
+  void _clearData() {
+    HiveHelper.clearData();
+  }
+
+  Widget getSettingsBody() {
+    return Center(
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [NeutralActionButton("Clear Data", _clearData)]),
+    );
   }
 
   Widget getHomeBody() {
@@ -94,8 +130,9 @@ class _HomeFeedState extends State<HomeFeed> {
     return Scaffold(
       appBar: MyAppBar(),
       backgroundColor: Colors.grey[300],
-      bottomNavigationBar: navHelper.getBottomNav(_navigateBottomBar, 0),
-      body: getHomeBody(),
+      bottomNavigationBar:
+          navHelper.getBottomNav(_navigateBottomBar, pageIndex),
+      body: activePageBody,
     );
   }
 }
