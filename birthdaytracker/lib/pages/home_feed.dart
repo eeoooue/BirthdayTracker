@@ -1,4 +1,5 @@
 import 'package:birthdaytracker/models/nav_helper.dart';
+import 'package:birthdaytracker/widgets/my_app_bar.dart';
 import 'package:flutter/material.dart';
 import '../models/time_helper.dart';
 import '../models/birthday_profile.dart';
@@ -38,15 +39,7 @@ class _HomeFeedState extends State<HomeFeed> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Center(
-          child: Text(
-            "BirthdayTracker",
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
-        backgroundColor: Colors.blue,
-      ),
+      appBar: MyAppBar(),
       bottomNavigationBar: BottomNavigationBar(
           onTap: _navigateBottomBar, items: navHelper.getNavBarItems()),
       body: Column(children: [

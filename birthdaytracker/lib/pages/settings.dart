@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/hive_helper.dart';
 import '../models/nav_helper.dart';
+import '../widgets/my_app_bar.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -21,15 +22,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Center(
-          child: Text(
-            "BirthdayTracker",
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
-        backgroundColor: Colors.blue,
-      ),
+      appBar: MyAppBar(),
       bottomNavigationBar: BottomNavigationBar(
           onTap: _navigateBottomBar,
           currentIndex: 2,
