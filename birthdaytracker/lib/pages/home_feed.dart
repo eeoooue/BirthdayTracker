@@ -36,23 +36,27 @@ class _HomeFeedState extends State<HomeFeed> {
     navHelper.navigateBottomBar(context, index);
   }
 
+  Widget getHomeBody() {
+    return Column(children: [
+      const CurrentDateBanner(),
+      Expanded(
+          child: ClipRect(
+        child: ListView.builder(
+            itemCount: profiles.length,
+            itemBuilder: (context, index) {
+              return BirthdayProfileBar(profiles[index]);
+            }),
+      ))
+    ]);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(),
       backgroundColor: Colors.grey[300],
       bottomNavigationBar: navHelper.getBottomNav(_navigateBottomBar, 0),
-      body: Column(children: [
-        const CurrentDateBanner(),
-        Expanded(
-            child: ClipRect(
-          child: ListView.builder(
-              itemCount: profiles.length,
-              itemBuilder: (context, index) {
-                return BirthdayProfileBar(profiles[index]);
-              }),
-        ))
-      ]),
+      body: getHomeBody(),
     );
   }
 }
