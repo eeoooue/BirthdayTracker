@@ -26,7 +26,7 @@ class BirthdayProfileBar extends StatelessWidget {
         height: 80,
         margin: const EdgeInsets.only(top: 10),
         child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-          BdarBarPicture(),
+          BdarBarPicture(profile),
           BdayBarName(profile.name),
           BdayBarDateBox(profile.month, profile.day),
         ]),
