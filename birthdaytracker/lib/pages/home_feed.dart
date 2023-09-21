@@ -42,7 +42,12 @@ class _HomeFeedState extends State<HomeFeed> {
       appBar: MyAppBar(),
       backgroundColor: Colors.grey[300],
       bottomNavigationBar: BottomNavigationBar(
-          onTap: _navigateBottomBar, items: navHelper.getNavBarItems()),
+          backgroundColor: const Color.fromRGBO(40, 30, 42, 1),
+          selectedItemColor: const Color.fromRGBO(155, 80, 148, 1),
+          // selectedItemColor: const Color.fromRGBO(168, 158, 168, 1),
+          unselectedItemColor: const Color.fromRGBO(0, 0, 0, 0.9),
+          onTap: _navigateBottomBar,
+          items: navHelper.getNavBarItems()),
       body: Column(children: [
         const CurrentDateBanner(),
         Expanded(
