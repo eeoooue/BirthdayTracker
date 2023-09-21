@@ -18,8 +18,7 @@ class HiveHelper {
     if (picsBox.containsKey(key)) {
       return picsBox.get(key);
     }
-
-    return 'assets/TestPicture.jpg';
+    return '';
   }
 
   static void clearData() async {
@@ -95,6 +94,10 @@ class HiveHelper {
     }
 
     return null;
+  }
+
+  static void saveImagePath(BirthdayProfile profile, String path) {
+    picsBox.put(profile.key, path);
   }
 
   static List<int> interpretDate(String encodedBday) {
