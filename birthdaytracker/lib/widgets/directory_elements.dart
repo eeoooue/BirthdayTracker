@@ -18,24 +18,21 @@ class DirectoryProfile extends DirectoryElement {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 5),
-      child: MaterialButton(
-        onPressed: () {
-          _openProfile(context);
-        },
-        child: Container(
-          decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
-          child: Row(children: [
-            Padding(
-              padding: const EdgeInsets.all(12),
-              child: Text(
-                profile.name,
-                style: const TextStyle(fontSize: 20, color: Colors.black54),
-              ),
+    return TextButton(
+      onPressed: () {
+        _openProfile(context);
+      },
+      child: Container(
+        decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+        child: Row(children: [
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Text(
+              profile.name,
+              style: const TextStyle(fontSize: 20),
             ),
-          ]),
-        ),
+          ),
+        ]),
       ),
     );
   }
@@ -48,24 +45,14 @@ class DirectorySectionMarker extends DirectoryElement {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 5),
-      child: Container(
-        decoration: const BoxDecoration(boxShadow: [
-          BoxShadow(color: Color.fromRGBO(42, 42, 42, 0.6)),
-          BoxShadow(color: Color.fromRGBO(155, 80, 148, 0.2)),
-          BoxShadow(
-              color: Color.fromRGBO(255, 255, 255, 0.75),
-              spreadRadius: -5,
-              blurRadius: 50)
-        ]),
-        width: double.infinity,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(6, 4, 6, 4),
-          child: Text(
-            character,
-            style: const TextStyle(fontSize: 16, color: Colors.white),
-          ),
+    return Container(
+      color: Colors.grey,
+      width: double.infinity,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(6, 4, 6, 4),
+        child: Text(
+          character,
+          style: const TextStyle(fontSize: 16, color: Colors.white),
         ),
       ),
     );

@@ -101,7 +101,7 @@ class _AddProfileState extends State<AddProfile> {
           "Add Profile",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: const Color.fromRGBO(40, 30, 42, 1),
+        backgroundColor: Colors.blue,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

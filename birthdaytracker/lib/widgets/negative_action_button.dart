@@ -15,7 +15,7 @@ class NegativeActionButton extends StatelessWidget {
           myFunction();
         },
         color: Colors.grey[200],
-        textColor: Color.fromRGBO(206, 45, 79, 1),
+        textColor: Colors.red,
         child: Text(buttonText),
       ),
     );

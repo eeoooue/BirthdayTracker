@@ -14,7 +14,7 @@ class PositiveActionButton extends StatelessWidget {
         onPressed: () {
           myFunction();
         },
-        color: const Color.fromRGBO(155, 80, 148, 1),
+        color: Colors.blue,
         textColor: Colors.white,
         child: Text(buttonText),
       ),
