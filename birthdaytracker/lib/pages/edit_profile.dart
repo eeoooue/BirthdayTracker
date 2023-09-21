@@ -1,7 +1,9 @@
 import 'package:birthdaytracker/models/hive_helper.dart';
 import 'package:birthdaytracker/models/nav_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import '../models/birthday_profile.dart';
+import 'package:image_picker/image_picker.dart';
 
 class EditProfile extends StatefulWidget {
   final BirthdayProfile profile;
@@ -26,6 +28,7 @@ class _EditProfileState extends State<EditProfile> {
 
   String photoPath = "";
   String photoButtonText = "Add Photo";
+  XFile? profilePhoto;
 
   _EditProfileState(this.profile) {
     dateButtonString = profile.getBirthdayString();
@@ -86,10 +89,30 @@ class _EditProfileState extends State<EditProfile> {
     }
 
     HiveHelper.saveProfile(profile);
+
+    if (profilePhoto != null) {
+      savePhoto(profile);
+    }
+
     navHelper.navigateHome(context);
   }
 
-  void _addPhoto() {}
+  Future<String> savePhoto(BirthdayProfile profile) async {
+    final dir = await getApplicationDocumentsDirectory();
+    String dirpath = dir.path;
+    String newpath = "${dirpath}/photo_${profile.key}.jpg";
+
+    if (profilePhoto != null) {
+      profilePhoto!.saveTo(newpath);
+      HiveHelper.saveImagePath(profile, newpath);
+    }
+    return newpath;
+  }
+
+  Future _addPhoto() async {
+    // Step 1: Retrieve image from picker
+    profilePhoto = await ImagePicker().pickImage(source: ImageSource.gallery);
+  }
 
   void _showDatePicker() {
     showDatePicker(
@@ -129,7 +152,9 @@ class _EditProfileState extends State<EditProfile> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: MaterialButton(
-              onPressed: _addPhoto,
+              onPressed: () {
+                _addPhoto();
+              },
               color: Colors.grey[300],
               child: Text(photoButtonText),
             ),
