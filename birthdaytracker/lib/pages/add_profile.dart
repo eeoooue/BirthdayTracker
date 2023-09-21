@@ -1,5 +1,6 @@
 import 'package:birthdaytracker/models/hive_helper.dart';
 import 'package:birthdaytracker/models/nav_helper.dart';
+import 'package:birthdaytracker/widgets/neutral_action_button.dart';
 import 'package:birthdaytracker/widgets/positive_action_button.dart';
 import 'package:birthdaytracker/widgets/negative_action_button.dart';
 import 'package:flutter/material.dart';
@@ -112,14 +113,7 @@ class _AddProfileState extends State<AddProfile> {
                   hintText: "Name", border: OutlineInputBorder()),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: MaterialButton(
-              onPressed: _showDatePicker,
-              color: Colors.grey[300],
-              child: Text(dateButtonString),
-            ),
-          ),
+          NeutralActionButton(dateButtonString, _showDatePicker),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
