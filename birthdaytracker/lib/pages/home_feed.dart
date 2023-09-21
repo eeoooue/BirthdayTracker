@@ -26,6 +26,7 @@ class _HomeFeedState extends State<HomeFeed> {
   final NavigationHelper navHelper = NavigationHelper();
   int pageIndex = 0;
   Widget activePageBody = Container();
+  bool showFloatingBtn = false;
 
   _HomeFeedState() {
     activePageBody = getHomeBody();
@@ -46,9 +47,12 @@ class _HomeFeedState extends State<HomeFeed> {
     pageIndex = index;
 
     setState(() {
+      showFloatingBtn = false;
+
       switch (pageIndex) {
         case 1:
           {
+            showFloatingBtn = true;
             activePageBody = getDirectoryBody();
           }
         case 2:
@@ -130,6 +134,21 @@ class _HomeFeedState extends State<HomeFeed> {
     return Scaffold(
       appBar: MyAppBar(),
       backgroundColor: Colors.grey[300],
+      floatingActionButton: Visibility(
+        visible: showFloatingBtn,
+        child: SizedBox(
+          height: 100,
+          width: 100,
+          child: FittedBox(
+            child: FloatingActionButton(
+                backgroundColor: const Color.fromRGBO(155, 80, 148, 1),
+                onPressed: () {
+                  navHelper.addProfile(context);
+                },
+                child: const Icon(Icons.add)),
+          ),
+        ),
+      ),
       bottomNavigationBar:
           navHelper.getBottomNav(_navigateBottomBar, pageIndex),
       body: activePageBody,

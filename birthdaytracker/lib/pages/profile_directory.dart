@@ -51,16 +51,18 @@ class _ProfileDirectoryState extends State<ProfileDirectory> {
       appBar: MyAppBar(),
       bottomNavigationBar: navHelper.getBottomNav(_navigateBottomBar, 1),
       backgroundColor: Colors.grey[300],
-      floatingActionButton: SizedBox(
-        height: 100,
-        width: 100,
-        child: FittedBox(
-          child: FloatingActionButton(
-              backgroundColor: Color.fromRGBO(155, 80, 148, 1),
-              onPressed: () {
-                navHelper.addProfile(context);
-              },
-              child: const Icon(Icons.add)),
+      floatingActionButton: Visibility(
+        child: SizedBox(
+          height: 100,
+          width: 100,
+          child: FittedBox(
+            child: FloatingActionButton(
+                backgroundColor: Color.fromRGBO(155, 80, 148, 1),
+                onPressed: () {
+                  navHelper.addProfile(context);
+                },
+                child: const Icon(Icons.add)),
+          ),
         ),
       ),
       body: Column(children: [
