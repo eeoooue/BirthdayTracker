@@ -50,6 +50,7 @@ class _ProfileDirectoryState extends State<ProfileDirectory> {
     return Scaffold(
       appBar: MyAppBar(),
       bottomNavigationBar: navHelper.getBottomNav(_navigateBottomBar, 1),
+      backgroundColor: Colors.grey[300],
       floatingActionButton: SizedBox(
         height: 100,
         width: 100,
