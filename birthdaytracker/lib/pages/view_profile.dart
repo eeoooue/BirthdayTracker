@@ -42,7 +42,7 @@ class _ViewProfileState extends State<ViewProfile> {
           "View Profile",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color.fromRGBO(40, 30, 42, 1),
       ),
       body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         ProfilePicture(profile, 150),
