@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/time_helper.dart';
 import '../models/birthday_profile.dart';
 import '../widgets/birthday_profile_bar.dart';
+import '../widgets/current_date_banner.dart';
 
 class HomeFeed extends StatefulWidget {
   const HomeFeed({super.key});
@@ -49,15 +50,7 @@ class _HomeFeedState extends State<HomeFeed> {
       bottomNavigationBar: BottomNavigationBar(
           onTap: _navigateBottomBar, items: navHelper.getNavBarItems()),
       body: Column(children: [
-        Container(
-          height: 32,
-          color: Colors.grey[300],
-          child: Center(
-              child: Text(
-            getTodayAsText(),
-            style: TextStyle(color: Colors.black54),
-          )),
-        ),
+        const CurrentDateBanner(),
         Expanded(
             child: ListView.builder(
                 itemCount: profiles.length,
