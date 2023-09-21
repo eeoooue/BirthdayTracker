@@ -24,6 +24,9 @@ class _EditProfileState extends State<EditProfile> {
   bool dateHasChanged = false;
   bool includesYear = false;
 
+  String photoPath = "";
+  String photoButtonText = "Add Photo";
+
   _EditProfileState(this.profile) {
     dateButtonString = profile.getBirthdayString();
     includesYear = profile.includesYear;
@@ -86,6 +89,8 @@ class _EditProfileState extends State<EditProfile> {
     navHelper.navigateHome(context);
   }
 
+  void _addPhoto() {}
+
   void _showDatePicker() {
     showDatePicker(
             context: context,
@@ -119,6 +124,14 @@ class _EditProfileState extends State<EditProfile> {
               controller: _textController,
               decoration: const InputDecoration(
                   hintText: "Name", border: OutlineInputBorder()),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: MaterialButton(
+              onPressed: _addPhoto,
+              color: Colors.grey[300],
+              child: Text(photoButtonText),
             ),
           ),
           Padding(
