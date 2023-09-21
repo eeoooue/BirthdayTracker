@@ -47,10 +47,6 @@ class _HomeFeedState extends State<HomeFeed> {
 
     setState(() {
       switch (pageIndex) {
-        case 0:
-          {
-            activePageBody = getHomeBody();
-          }
         case 1:
           {
             activePageBody = getDirectoryBody();
@@ -58,6 +54,10 @@ class _HomeFeedState extends State<HomeFeed> {
         case 2:
           {
             activePageBody = getSettingsBody();
+          }
+        default:
+          {
+            activePageBody = getHomeBody();
           }
       }
     });
