@@ -1,8 +1,6 @@
-import 'dart:collection';
-
 import 'package:birthdaytracker/models/hive_helper.dart';
 import 'package:birthdaytracker/models/nav_helper.dart';
-import 'package:birthdaytracker/models/profile_store.dart';
+import 'package:birthdaytracker/models/profile_directory.dart';
 import 'package:birthdaytracker/widgets/directory_elements.dart';
 import 'package:birthdaytracker/widgets/my_app_bar.dart';
 import 'package:birthdaytracker/widgets/neutral_action_button.dart';
@@ -75,7 +73,7 @@ class _HomeFeedState extends State<HomeFeed> {
   }
 
   Widget getDirectoryBody() {
-    List<DirectoryElement> elements = getDirectoryElements();
+    List<DirectoryElement> elements = ProfileDirectory.getElements();
 
     return Column(children: [
       Expanded(
@@ -94,28 +92,6 @@ class _HomeFeedState extends State<HomeFeed> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [NeutralActionButton("Clear Data", _clearData)]),
     );
-  }
-
-  List<DirectoryElement> getDirectoryElements() {
-    List<DirectoryElement> elements = List.empty(growable: true);
-    ProfileStore store = ProfileStore();
-    HashSet<String> seen = HashSet();
-
-    bool includeSectionMarkers = true;
-
-    for (BirthdayProfile profile in store.getAlphabeticalOrdering()) {
-      String firstChar = profile.name[0].toUpperCase();
-      if (!seen.contains(firstChar)) {
-        if (includeSectionMarkers) {
-          elements.add(DirectorySectionMarker(firstChar));
-        }
-
-        seen.add(firstChar);
-      }
-      elements.add(DirectoryProfile(profile));
-    }
-
-    return elements;
   }
 
   @override
