@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class BorderedBirthday extends StatelessWidget {
   final BirthdayProfile profile;
 
-  BorderedBirthday(this.profile, {super.key});
+  const BorderedBirthday(this.profile, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class BorderedBirthday extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               profile.getBirthdayString(),
-              style: TextStyle(fontSize: 18),
+              style: const TextStyle(fontSize: 18),
             ),
           )),
     );
