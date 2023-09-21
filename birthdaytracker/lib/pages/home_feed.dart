@@ -1,4 +1,8 @@
+import 'dart:collection';
+
 import 'package:birthdaytracker/models/nav_helper.dart';
+import 'package:birthdaytracker/models/profile_store.dart';
+import 'package:birthdaytracker/widgets/directory_elements.dart';
 import 'package:birthdaytracker/widgets/my_app_bar.dart';
 import 'package:flutter/material.dart';
 import '../models/time_helper.dart';
@@ -48,6 +52,41 @@ class _HomeFeedState extends State<HomeFeed> {
             }),
       ))
     ]);
+  }
+
+  Widget getDirectoryBody() {
+    List<DirectoryElement> elements = getDirectoryElements();
+
+    return Column(children: [
+      Expanded(
+          child: ListView.builder(
+              itemCount: elements.length,
+              itemBuilder: (context, index) {
+                return elements[index];
+              }))
+    ]);
+  }
+
+  List<DirectoryElement> getDirectoryElements() {
+    List<DirectoryElement> elements = List.empty(growable: true);
+    ProfileStore store = ProfileStore();
+    HashSet<String> seen = HashSet();
+
+    bool includeSectionMarkers = true;
+
+    for (BirthdayProfile profile in store.getAlphabeticalOrdering()) {
+      String firstChar = profile.name[0].toUpperCase();
+      if (!seen.contains(firstChar)) {
+        if (includeSectionMarkers) {
+          elements.add(DirectorySectionMarker(firstChar));
+        }
+
+        seen.add(firstChar);
+      }
+      elements.add(DirectoryProfile(profile));
+    }
+
+    return elements;
   }
 
   @override
