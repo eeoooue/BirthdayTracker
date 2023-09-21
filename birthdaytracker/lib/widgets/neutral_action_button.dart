@@ -14,7 +14,7 @@ class NeutralActionButton extends StatelessWidget {
         onPressed: () {
           myFunction();
         },
-        color: Colors.grey[200],
+        color: Colors.grey[300],
         child: Text(buttonText),
       ),
     );

@@ -58,7 +58,6 @@ class _ProfileDirectoryState extends State<ProfileDirectory> {
         width: 100,
         child: FittedBox(
           child: FloatingActionButton(
-              backgroundColor: Color.fromRGBO(155, 80, 148, 1),
               onPressed: () {
                 navHelper.addProfile(context);
               },
