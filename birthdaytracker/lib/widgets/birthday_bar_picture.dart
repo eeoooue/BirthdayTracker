@@ -13,11 +13,9 @@ class BdarBarPicture extends StatelessWidget {
       height: 80,
       width: 80,
       child: Center(
-          child: Container(
-        height: 70,
-        width: 70,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100), color: Colors.white),
+          child: SizedBox(
+        height: 68,
+        width: 68,
         child: ProfilePictureElement(profile),
       )),
     );
