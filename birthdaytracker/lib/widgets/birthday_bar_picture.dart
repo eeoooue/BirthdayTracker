@@ -1,3 +1,4 @@
+import 'package:birthdaytracker/widgets/profile_picture_element.dart';
 import 'package:flutter/material.dart';
 
 class BdarBarPicture extends StatelessWidget {
@@ -15,6 +16,7 @@ class BdarBarPicture extends StatelessWidget {
         width: 70,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(100), color: Colors.white),
+        child: ProfilePictureElement(),
       )),
     );
   }
