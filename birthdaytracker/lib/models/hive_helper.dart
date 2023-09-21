@@ -105,7 +105,6 @@ class HiveHelper {
     List<String> arr = encodedBday.split('-');
 
     if (arr.length != 3) {
-      print("the arr split didn't work");
       throw Exception("the arr split didn't work");
     }
 
