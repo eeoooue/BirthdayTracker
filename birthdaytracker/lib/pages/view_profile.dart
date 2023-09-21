@@ -45,7 +45,7 @@ class _ViewProfileState extends State<ViewProfile> {
         backgroundColor: Colors.blue,
       ),
       body: Column(children: [
-        ProfilePicture(profile),
+        ProfilePicture(profile, 150),
         ProfileNameCard(profile),
         BorderedBirthday(profile),
         Row(
