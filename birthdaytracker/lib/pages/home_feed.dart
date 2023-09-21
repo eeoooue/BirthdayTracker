@@ -1,5 +1,9 @@
+import 'package:birthdaytracker/models/hive_helper.dart';
 import 'package:birthdaytracker/models/nav_helper.dart';
+import 'package:birthdaytracker/models/profile_directory.dart';
+import 'package:birthdaytracker/widgets/directory_elements.dart';
 import 'package:birthdaytracker/widgets/my_app_bar.dart';
+import 'package:birthdaytracker/widgets/neutral_action_button.dart';
 import 'package:flutter/material.dart';
 import '../models/time_helper.dart';
 import '../models/birthday_profile.dart';
@@ -18,22 +22,76 @@ class HomeFeed extends StatefulWidget {
 class _HomeFeedState extends State<HomeFeed> {
   final List<BirthdayProfile> profiles = TimeHelper().getClosestBirthdays();
   final NavigationHelper navHelper = NavigationHelper();
+  int pageIndex = 0;
+  Widget activePageBody = Container();
+  bool showFloatingBtn = false;
 
-  _HomeFeedState();
-
-  String getTodayAsText() {
-    int day = DateTime.now().day;
-    int month = DateTime.now().month;
-    int year = DateTime.now().year;
-
-    BirthdayProfile today = BirthdayProfile(-1, "Today", month, day);
-    today.setYear(year);
-
-    return today.getBirthdayString();
+  _HomeFeedState() {
+    activePageBody = getHomeBody();
   }
 
   void _navigateBottomBar(int index) {
-    navHelper.navigateBottomBar(context, index);
+    pageIndex = index;
+
+    setState(() {
+      showFloatingBtn = false;
+
+      switch (pageIndex) {
+        case 1:
+          {
+            showFloatingBtn = true;
+            activePageBody = getDirectoryBody();
+          }
+        case 2:
+          {
+            activePageBody = getSettingsBody();
+          }
+        default:
+          {
+            activePageBody = getHomeBody();
+          }
+      }
+    });
+  }
+
+  void _clearData() {
+    HiveHelper.clearData();
+  }
+
+  Widget getHomeBody() {
+    return Column(children: [
+      const CurrentDateBanner(),
+      Expanded(
+          child: ClipRect(
+        child: ListView.builder(
+            itemCount: profiles.length,
+            itemBuilder: (context, index) {
+              return BirthdayProfileBar(profiles[index]);
+            }),
+      ))
+    ]);
+  }
+
+  Widget getDirectoryBody() {
+    List<DirectoryElement> elements = ProfileDirectory.getElements();
+
+    return Column(children: [
+      Expanded(
+          child: ListView.builder(
+              itemCount: elements.length,
+              itemBuilder: (context, index) {
+                return elements[index];
+              }))
+    ]);
+  }
+
+  Widget getSettingsBody() {
+    return Center(
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [NeutralActionButton("Clear Data", _clearData)]),
+    );
   }
 
   @override
@@ -41,18 +99,24 @@ class _HomeFeedState extends State<HomeFeed> {
     return Scaffold(
       appBar: MyAppBar(),
       backgroundColor: Colors.grey[300],
-      bottomNavigationBar: navHelper.getBottomNav(_navigateBottomBar, 0),
-      body: Column(children: [
-        const CurrentDateBanner(),
-        Expanded(
-            child: ClipRect(
-          child: ListView.builder(
-              itemCount: profiles.length,
-              itemBuilder: (context, index) {
-                return BirthdayProfileBar(profiles[index]);
-              }),
-        ))
-      ]),
+      floatingActionButton: Visibility(
+        visible: showFloatingBtn,
+        child: SizedBox(
+          height: 100,
+          width: 100,
+          child: FittedBox(
+            child: FloatingActionButton(
+                backgroundColor: const Color.fromRGBO(155, 80, 148, 1),
+                onPressed: () {
+                  navHelper.addProfile(context);
+                },
+                child: const Icon(Icons.add)),
+          ),
+        ),
+      ),
+      bottomNavigationBar:
+          navHelper.getBottomNav(_navigateBottomBar, pageIndex),
+      body: activePageBody,
     );
   }
 }
