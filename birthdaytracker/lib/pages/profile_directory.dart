@@ -49,10 +49,8 @@ class _ProfileDirectoryState extends State<ProfileDirectory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(),
-      bottomNavigationBar: BottomNavigationBar(
-          onTap: _navigateBottomBar,
-          currentIndex: 1,
-          items: navHelper.getNavBarItems()),
+      bottomNavigationBar: navHelper.getBottomNav(_navigateBottomBar, 1),
+      backgroundColor: Colors.grey[300],
       floatingActionButton: SizedBox(
         height: 100,
         width: 100,

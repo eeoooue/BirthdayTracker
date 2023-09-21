@@ -41,8 +41,7 @@ class _HomeFeedState extends State<HomeFeed> {
     return Scaffold(
       appBar: MyAppBar(),
       backgroundColor: Colors.grey[300],
-      bottomNavigationBar: BottomNavigationBar(
-          onTap: _navigateBottomBar, items: navHelper.getNavBarItems()),
+      bottomNavigationBar: navHelper.getBottomNav(_navigateBottomBar, 0),
       body: Column(children: [
         const CurrentDateBanner(),
         Expanded(

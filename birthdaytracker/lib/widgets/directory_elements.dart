@@ -25,7 +25,8 @@ class DirectoryProfile extends DirectoryElement {
           _openProfile(context);
         },
         child: Container(
-          decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+          decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey), color: Colors.white),
           child: Row(children: [
             Padding(
               padding: const EdgeInsets.all(12),
