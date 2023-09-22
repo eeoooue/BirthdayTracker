@@ -33,8 +33,8 @@ class _ViewProfileState extends State<ViewProfile> {
 
   _confirmDeleteProfile() {
     List<Widget> buttons = List.empty(growable: true);
-    buttons.add(NegativeActionButton("Confirm", _deleteProfile));
-    buttons.add(NeutralActionButton("Cancel", _cancelDeletion));
+    buttons.add(NeutralActionButton("Confirm", _deleteProfile));
+    buttons.add(NegativeActionButton("Cancel", _cancelDeletion));
 
     showDialog(
         context: context,
