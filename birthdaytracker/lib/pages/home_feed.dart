@@ -7,6 +7,7 @@ import 'package:birthdaytracker/widgets/my_app_bar.dart';
 import 'package:birthdaytracker/widgets/negative_action_button.dart';
 import 'package:birthdaytracker/widgets/neutral_action_button.dart';
 import 'package:birthdaytracker/widgets/positive_action_button.dart';
+import 'package:birthdaytracker/widgets/startup_hint.dart';
 import 'package:flutter/material.dart';
 import '../models/time_helper.dart';
 import '../models/birthday_profile.dart';
@@ -23,7 +24,6 @@ class HomeFeed extends StatefulWidget {
 }
 
 class _HomeFeedState extends State<HomeFeed> {
-  final List<BirthdayProfile> profiles = TimeHelper().getClosestBirthdays();
   final NavigationHelper navHelper = NavigationHelper();
   final DialogBank dialogBank = DialogBank();
 
@@ -109,6 +109,15 @@ class _HomeFeedState extends State<HomeFeed> {
   }
 
   Widget getHomeBody() {
+    final List<BirthdayProfile> profiles = TimeHelper().getClosestBirthdays();
+
+    if (profiles.isEmpty) {
+      return const Column(children: [
+        CurrentDateBanner(),
+        Expanded(child: StartupHint()),
+      ]);
+    }
+
     return Column(children: [
       const CurrentDateBanner(),
       Expanded(
