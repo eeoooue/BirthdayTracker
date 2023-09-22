@@ -66,18 +66,20 @@ class _ViewProfileState extends State<ViewProfile> {
         ),
         backgroundColor: const Color.fromRGBO(40, 30, 42, 1),
       ),
-      body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        ProfilePicture(profile, 150),
-        ProfileNameCard(profile),
-        BorderedBirthday(profile),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            NeutralActionButton("Edit", _editProfile),
-            NegativeActionButton("Delete", _confirmDeleteProfile),
-          ],
-        ),
-      ]),
+      body: SingleChildScrollView(
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          ProfilePicture(profile, 150),
+          ProfileNameCard(profile),
+          BorderedBirthday(profile),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              NeutralActionButton("Edit", _editProfile),
+              NegativeActionButton("Delete", _confirmDeleteProfile),
+            ],
+          ),
+        ]),
+      ),
     );
   }
 }

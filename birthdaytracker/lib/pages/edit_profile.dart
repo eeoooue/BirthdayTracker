@@ -166,37 +166,39 @@ class _EditProfileState extends State<EditProfile> {
         ),
         backgroundColor: const Color.fromRGBO(40, 30, 42, 1),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: TextField(
-              controller: _textController,
-              decoration: const InputDecoration(
-                  hintText: "Name", border: OutlineInputBorder()),
-            ),
-          ),
-          NeutralActionButton(photoButtonText, _addPhoto),
-          NeutralActionButton(dateButtonString, _showDatePicker),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text("Include Year?"),
-              Checkbox(
-                value: includesYear,
-                onChanged: (value) => checkBoxChanged(value),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: TextField(
+                controller: _textController,
+                decoration: const InputDecoration(
+                    hintText: "Name", border: OutlineInputBorder()),
               ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              PositiveActionButton("Save", submitChanges),
-              NegativeActionButton("Cancel", _cancel),
-            ],
-          )
-        ],
+            ),
+            NeutralActionButton(photoButtonText, _addPhoto),
+            NeutralActionButton(dateButtonString, _showDatePicker),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("Include Year?"),
+                Checkbox(
+                  value: includesYear,
+                  onChanged: (value) => checkBoxChanged(value),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                PositiveActionButton("Save", submitChanges),
+                NegativeActionButton("Cancel", _cancel),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
