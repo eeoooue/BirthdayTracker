@@ -5,14 +5,8 @@ class DialogBank {
       String titleText, String contentText, List<Widget> buttons) {
     return AlertDialog(
       alignment: Alignment.center,
-      title: const Text(
-        "Success",
-        textAlign: TextAlign.center,
-      ),
-      content: const Text(
-        "New profile saved.",
-        textAlign: TextAlign.center,
-      ),
+      title: Text(titleText, textAlign: TextAlign.center),
+      content: Text(contentText, textAlign: TextAlign.center),
       actionsAlignment: MainAxisAlignment.center,
       actions: buttons,
     );
