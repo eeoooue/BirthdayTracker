@@ -129,7 +129,7 @@ class _AddProfileState extends State<AddProfile> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: TextField(
                 controller: _textController,
                 decoration: const InputDecoration(
