@@ -29,6 +29,39 @@ class BirthdayProfile {
     year = birthdayYear;
   }
 
+  int getAge() {
+    if (includesYear) {
+      int currentYear = DateTime.now().year;
+      int yearsOld = currentYear - year;
+
+      if (birthdayHasPassed() == false) {
+        if (birthdayIsToday() == false) {
+          yearsOld -= 1;
+        }
+      }
+
+      return yearsOld;
+    }
+
+    return 0;
+  }
+
+  bool birthdayIsToday() {
+    DateTime present = DateTime.now();
+    return (month == present.month) && (day == present.day);
+  }
+
+  bool birthdayHasPassed() {
+    if (month < DateTime.now().month) {
+      return true;
+    }
+    if (month > DateTime.now().month) {
+      return false;
+    }
+
+    return (day < DateTime.now().day);
+  }
+
   String getBirthdayString() {
     String dayAndMonth = "${getSuffixedNum(day)} ${months[month - 1]}";
 
