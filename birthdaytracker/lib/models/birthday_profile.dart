@@ -1,4 +1,7 @@
+import 'package:birthdaytracker/models/astrologist.dart';
+
 class BirthdayProfile {
+  final Astrologist astrologist = Astrologist();
   final List<String> months = List.from([
     "January",
     "February",
@@ -27,6 +30,10 @@ class BirthdayProfile {
   void setYear(int birthdayYear) {
     includesYear = true;
     year = birthdayYear;
+  }
+
+  String getZodiacSign() {
+    return astrologist.getSign(month, day);
   }
 
   int getAge() {
