@@ -152,8 +152,8 @@ class _HomeFeedState extends State<HomeFeed> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            MyAppIcon(),
-            BuildInfo("v0.6.0"),
+            const MyAppIcon(),
+            const BuildInfo("v0.6.0"),
             NeutralActionButton("Clear Data", _confirmClearData)
           ]),
     );

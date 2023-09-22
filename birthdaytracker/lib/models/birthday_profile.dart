@@ -73,7 +73,7 @@ class BirthdayProfile {
     String dayAndMonth = "${getSuffixedNum(day)} ${months[month - 1]}";
 
     if (includesYear) {
-      return "${dayAndMonth}, ${year}";
+      return "$dayAndMonth, $year";
     }
 
     return dayAndMonth;

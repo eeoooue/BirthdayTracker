@@ -128,7 +128,7 @@ class _EditProfileState extends State<EditProfile> {
   Future<String> savePhoto(BirthdayProfile profile) async {
     final dir = await getApplicationDocumentsDirectory();
     String dirpath = dir.path;
-    String newpath = "${dirpath}/photo_${profile.key}.jpg";
+    String newpath = "$dirpath/photo_${profile.key}.jpg";
 
     if (profilePhoto != null) {
       profilePhoto!.saveTo(newpath);

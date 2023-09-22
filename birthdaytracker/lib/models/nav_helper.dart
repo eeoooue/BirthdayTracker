@@ -22,7 +22,7 @@ class NavigationHelper {
 
   void addProfile(BuildContext context) {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => AddProfile()));
+        context, MaterialPageRoute(builder: (context) => const AddProfile()));
   }
 
   void editProfile(BuildContext context, BirthdayProfile profile) {

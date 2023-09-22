@@ -11,7 +11,7 @@ class BuildInfo extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Column(children: [
         Text(
-          "BirthdayTracker ${version}",
+          "BirthdayTracker $version",
           style: const TextStyle(fontSize: 20, color: Colors.black54),
         ),
         const Padding(
