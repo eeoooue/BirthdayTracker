@@ -56,6 +56,17 @@ class _ViewProfileState extends State<ViewProfile> {
     navHelper.navigateHome(context);
   }
 
+  Row getDetailsRow() {
+    List<Widget> details = List.empty(growable: true);
+
+    if (profile.includesYear) {
+      Container element = Container(child: Text("Age: ${profile.getAge()}"));
+      details.add(element);
+    }
+
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: details);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,6 +82,7 @@ class _ViewProfileState extends State<ViewProfile> {
           Container(color: Colors.transparent, height: 70),
           ProfilePicture(profile, 150),
           ProfileNameCard(profile),
+          getDetailsRow(),
           BorderedBirthday(profile),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
