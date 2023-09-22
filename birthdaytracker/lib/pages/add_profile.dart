@@ -124,36 +124,38 @@ class _AddProfileState extends State<AddProfile> {
         ),
         backgroundColor: const Color.fromRGBO(40, 30, 42, 1),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: EdgeInsets.all(20),
-            child: TextField(
-              controller: _textController,
-              decoration: const InputDecoration(
-                  hintText: "Name", border: OutlineInputBorder()),
-            ),
-          ),
-          NeutralActionButton(dateButtonString, _showDatePicker),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text("Include Year?"),
-              Checkbox(
-                value: includeYear,
-                onChanged: (value) => checkBoxChanged(value),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: EdgeInsets.all(20),
+              child: TextField(
+                controller: _textController,
+                decoration: const InputDecoration(
+                    hintText: "Name", border: OutlineInputBorder()),
               ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              PositiveActionButton("Submit", _submit),
-              NegativeActionButton("Cancel", _cancel),
-            ],
-          )
-        ],
+            ),
+            NeutralActionButton(dateButtonString, _showDatePicker),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("Include Year?"),
+                Checkbox(
+                  value: includeYear,
+                  onChanged: (value) => checkBoxChanged(value),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                PositiveActionButton("Submit", _submit),
+                NegativeActionButton("Cancel", _cancel),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

@@ -61,8 +61,8 @@ class _HomeFeedState extends State<HomeFeed> {
 
   void _confirmClearData() {
     List<Widget> buttons = List.empty(growable: true);
-    buttons.add(NegativeActionButton("Confirm", _clearData));
-    buttons.add(NeutralActionButton("Cancel", _cancelDeletion));
+    buttons.add(NeutralActionButton("Confirm", _clearData));
+    buttons.add(NegativeActionButton("Cancel", _cancelDeletion));
 
     showDialog(
         context: context,

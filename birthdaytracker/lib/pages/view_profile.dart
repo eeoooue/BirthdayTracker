@@ -33,8 +33,8 @@ class _ViewProfileState extends State<ViewProfile> {
 
   _confirmDeleteProfile() {
     List<Widget> buttons = List.empty(growable: true);
-    buttons.add(NegativeActionButton("Confirm", _deleteProfile));
-    buttons.add(NeutralActionButton("Cancel", _cancelDeletion));
+    buttons.add(NeutralActionButton("Confirm", _deleteProfile));
+    buttons.add(NegativeActionButton("Cancel", _cancelDeletion));
 
     showDialog(
         context: context,
@@ -66,18 +66,21 @@ class _ViewProfileState extends State<ViewProfile> {
         ),
         backgroundColor: const Color.fromRGBO(40, 30, 42, 1),
       ),
-      body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        ProfilePicture(profile, 150),
-        ProfileNameCard(profile),
-        BorderedBirthday(profile),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            NeutralActionButton("Edit", _editProfile),
-            NegativeActionButton("Delete", _confirmDeleteProfile),
-          ],
-        ),
-      ]),
+      body: SingleChildScrollView(
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Container(color: Colors.transparent, height: 70),
+          ProfilePicture(profile, 150),
+          ProfileNameCard(profile),
+          BorderedBirthday(profile),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              NeutralActionButton("Edit", _editProfile),
+              NegativeActionButton("Delete", _confirmDeleteProfile),
+            ],
+          ),
+        ]),
+      ),
     );
   }
 }
