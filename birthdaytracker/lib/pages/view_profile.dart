@@ -59,9 +59,15 @@ class _ViewProfileState extends State<ViewProfile> {
 
   Row getDetailsRow() {
     List<Widget> details = List.empty(growable: true);
+    bool includeZodiac = true;
 
     if (profile.includesYear) {
       var element = ProfileDetail("Age: ${profile.getAge()}");
+      details.add(element);
+    }
+
+    if (includeZodiac) {
+      var element = ProfileDetail("Sign: ${profile.getZodiacSign()}");
       details.add(element);
     }
 
