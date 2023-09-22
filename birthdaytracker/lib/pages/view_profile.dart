@@ -64,7 +64,7 @@ class _ViewProfileState extends State<ViewProfile> {
           "View Profile",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: const Color.fromRGBO(40, 30, 42, 1),
+        backgroundColor: Colors.blue,
       ),
       body: SingleChildScrollView(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
