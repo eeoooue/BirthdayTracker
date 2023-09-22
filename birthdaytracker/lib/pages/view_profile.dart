@@ -68,6 +68,7 @@ class _ViewProfileState extends State<ViewProfile> {
       ),
       body: SingleChildScrollView(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Container(color: Colors.transparent, height: 70),
           ProfilePicture(profile, 150),
           ProfileNameCard(profile),
           BorderedBirthday(profile),
