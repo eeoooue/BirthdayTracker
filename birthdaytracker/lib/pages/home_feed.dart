@@ -2,11 +2,14 @@ import 'package:birthdaytracker/models/dialog_bank.dart';
 import 'package:birthdaytracker/models/hive_helper.dart';
 import 'package:birthdaytracker/models/nav_helper.dart';
 import 'package:birthdaytracker/models/profile_directory.dart';
+import 'package:birthdaytracker/widgets/app_icon.dart';
+import 'package:birthdaytracker/widgets/build_info.dart';
 import 'package:birthdaytracker/widgets/directory_elements.dart';
 import 'package:birthdaytracker/widgets/my_app_bar.dart';
 import 'package:birthdaytracker/widgets/negative_action_button.dart';
 import 'package:birthdaytracker/widgets/neutral_action_button.dart';
 import 'package:birthdaytracker/widgets/positive_action_button.dart';
+import 'package:birthdaytracker/widgets/startup_hint.dart';
 import 'package:flutter/material.dart';
 import '../models/time_helper.dart';
 import '../models/birthday_profile.dart';
@@ -23,7 +26,6 @@ class HomeFeed extends StatefulWidget {
 }
 
 class _HomeFeedState extends State<HomeFeed> {
-  final List<BirthdayProfile> profiles = TimeHelper().getClosestBirthdays();
   final NavigationHelper navHelper = NavigationHelper();
   final DialogBank dialogBank = DialogBank();
 
@@ -109,6 +111,15 @@ class _HomeFeedState extends State<HomeFeed> {
   }
 
   Widget getHomeBody() {
+    final List<BirthdayProfile> profiles = TimeHelper().getClosestBirthdays();
+
+    if (profiles.isEmpty) {
+      return const Column(children: [
+        CurrentDateBanner(),
+        Expanded(child: StartupHint()),
+      ]);
+    }
+
     return Column(children: [
       const CurrentDateBanner(),
       Expanded(
@@ -140,7 +151,11 @@ class _HomeFeedState extends State<HomeFeed> {
       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [NeutralActionButton("Clear Data", _confirmClearData)]),
+          children: [
+            const MyAppIcon(),
+            const BuildInfo("v1.0.0"),
+            NeutralActionButton("Clear Data", _confirmClearData)
+          ]),
     );
   }
 

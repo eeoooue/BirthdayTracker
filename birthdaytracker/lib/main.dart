@@ -8,11 +8,11 @@ void main() async {
   await Hive.openBox("bdays");
   await Hive.openBox("pictures");
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +21,9 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: HomeFeed(),
+      home: const HomeFeed(),
       routes: {
-        '/homefeed': (context) => HomeFeed(),
+        '/homefeed': (context) => const HomeFeed(),
       },
     );
   }

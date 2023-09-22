@@ -60,13 +60,13 @@ class HiveHelper {
       years = makeLength("${profile.year}", 4);
     }
 
-    return "${days}-${months}-${years}";
+    return "$days-$months-$years";
   }
 
   static String makeLength(String original, int length) {
     int extra = length - original.length;
     if (extra < 0) {
-      throw Exception("attempted to extend oversized string '${original}'");
+      throw Exception("attempted to extend oversized string '$original'");
     }
 
     String padding = "";
