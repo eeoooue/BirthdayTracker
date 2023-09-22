@@ -16,12 +16,11 @@ class EditProfile extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return _EditProfileState(profile);
+    return _EditProfileState();
   }
 }
 
 class _EditProfileState extends State<EditProfile> {
-  final BirthdayProfile profile;
   final NavigationHelper navHelper = NavigationHelper();
   final _textController = TextEditingController();
   final DialogBank dialogBank = DialogBank();
@@ -35,15 +34,15 @@ class _EditProfileState extends State<EditProfile> {
   String photoButtonText = "Add Photo";
   XFile? profilePhoto;
 
-  _EditProfileState(this.profile) {
-    dateButtonString = profile.getBirthdayString();
-    includesYear = profile.includesYear;
-    _textController.text = profile.name;
+  _EditProfileState() {
+    dateButtonString = widget.profile.getBirthdayString();
+    includesYear = widget.profile.includesYear;
+    _textController.text = widget.profile.name;
   }
 
   String getFormattedTime() {
-    int month = profile.month;
-    int day = profile.day;
+    int month = widget.profile.month;
+    int day = widget.profile.day;
 
     if (dateHasChanged) {
       month = selectedTime.month;
@@ -56,7 +55,7 @@ class _EditProfileState extends State<EditProfile> {
       if (dateHasChanged) {
         temp.setYear(selectedTime.year);
       } else {
-        temp.setYear(profile.year);
+        temp.setYear(widget.profile.year);
       }
     }
 
@@ -79,28 +78,28 @@ class _EditProfileState extends State<EditProfile> {
       return;
     }
 
-    profile.name = _textController.text;
+    widget.profile.name = _textController.text;
 
     if (includesYear) {
-      profile.includesYear = true;
+      widget.profile.includesYear = true;
     }
 
     if (dateHasChanged) {
-      profile.month = selectedTime.month;
-      profile.day = selectedTime.day;
-      if (profile.includesYear) {
-        profile.setYear(selectedTime.year);
+      widget.profile.month = selectedTime.month;
+      widget.profile.day = selectedTime.day;
+      if (widget.profile.includesYear) {
+        widget.profile.setYear(selectedTime.year);
       }
     }
 
     if (!includesYear) {
-      profile.includesYear = false;
+      widget.profile.includesYear = false;
     }
 
-    HiveHelper.saveProfile(profile);
+    HiveHelper.saveProfile(widget.profile);
 
     if (profilePhoto != null) {
-      savePhoto(profile);
+      savePhoto(widget.profile);
     }
 
     _showSuccessDialog();
