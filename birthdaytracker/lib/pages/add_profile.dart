@@ -1,3 +1,4 @@
+import 'package:birthdaytracker/models/dialog_bank.dart';
 import 'package:birthdaytracker/models/hive_helper.dart';
 import 'package:birthdaytracker/models/nav_helper.dart';
 import 'package:birthdaytracker/widgets/neutral_action_button.dart';
@@ -18,6 +19,7 @@ class AddProfile extends StatefulWidget {
 class _AddProfileState extends State<AddProfile> {
   final NavigationHelper navHelper = NavigationHelper();
   final _textController = TextEditingController();
+  final DialogBank dialogBank = DialogBank();
 
   bool includeYear = false;
   DateTime selectedTime = DateTime.now();
@@ -71,7 +73,26 @@ class _AddProfileState extends State<AddProfile> {
     }
 
     HiveHelper.saveProfile(profile);
+    _showSuccessDialog();
+  }
+
+  void _navigateHome() {
     navHelper.navigateHome(context);
+  }
+
+  void _showSuccessDialog() {
+    List<Widget> buttons = List.empty(growable: true);
+    buttons.add(PositiveActionButton("Okay", _navigateHome));
+
+    showDialog(
+        context: context,
+        builder: (context) {
+          return dialogBank.getDialog(
+            "Success",
+            "New profile saved.",
+            buttons,
+          );
+        });
   }
 
   void _showDatePicker() {

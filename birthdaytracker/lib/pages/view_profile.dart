@@ -1,3 +1,4 @@
+import 'package:birthdaytracker/models/dialog_bank.dart';
 import 'package:birthdaytracker/models/nav_helper.dart';
 import 'package:birthdaytracker/widgets/negative_action_button.dart';
 import 'package:birthdaytracker/widgets/neutral_action_button.dart';
@@ -22,11 +23,32 @@ class ViewProfile extends StatefulWidget {
 class _ViewProfileState extends State<ViewProfile> {
   final BirthdayProfile profile;
   final NavigationHelper navHelper = NavigationHelper();
+  final DialogBank dialogBank = DialogBank();
 
   _ViewProfileState(this.profile);
 
   _editProfile() {
     navHelper.editProfile(context, profile);
+  }
+
+  _confirmDeleteProfile() {
+    List<Widget> buttons = List.empty(growable: true);
+    buttons.add(NegativeActionButton("Confirm", _deleteProfile));
+    buttons.add(NeutralActionButton("Cancel", _cancelDeletion));
+
+    showDialog(
+        context: context,
+        builder: (context) {
+          return dialogBank.getDialog(
+            "Confirm Deletion",
+            "Permanently erase this profile?",
+            buttons,
+          );
+        });
+  }
+
+  _cancelDeletion() {
+    Navigator.pop(context);
   }
 
   _deleteProfile() {
@@ -52,7 +74,7 @@ class _ViewProfileState extends State<ViewProfile> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             NeutralActionButton("Edit", _editProfile),
-            NegativeActionButton("Delete", _deleteProfile),
+            NegativeActionButton("Delete", _confirmDeleteProfile),
           ],
         ),
       ]),

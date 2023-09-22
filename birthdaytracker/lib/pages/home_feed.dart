@@ -1,9 +1,12 @@
+import 'package:birthdaytracker/models/dialog_bank.dart';
 import 'package:birthdaytracker/models/hive_helper.dart';
 import 'package:birthdaytracker/models/nav_helper.dart';
 import 'package:birthdaytracker/models/profile_directory.dart';
 import 'package:birthdaytracker/widgets/directory_elements.dart';
 import 'package:birthdaytracker/widgets/my_app_bar.dart';
+import 'package:birthdaytracker/widgets/negative_action_button.dart';
 import 'package:birthdaytracker/widgets/neutral_action_button.dart';
+import 'package:birthdaytracker/widgets/positive_action_button.dart';
 import 'package:flutter/material.dart';
 import '../models/time_helper.dart';
 import '../models/birthday_profile.dart';
@@ -22,6 +25,8 @@ class HomeFeed extends StatefulWidget {
 class _HomeFeedState extends State<HomeFeed> {
   final List<BirthdayProfile> profiles = TimeHelper().getClosestBirthdays();
   final NavigationHelper navHelper = NavigationHelper();
+  final DialogBank dialogBank = DialogBank();
+
   int pageIndex = 0;
   Widget activePageBody = Container();
   bool showFloatingBtn = false;
@@ -54,8 +59,53 @@ class _HomeFeedState extends State<HomeFeed> {
     });
   }
 
+  void _confirmClearData() {
+    List<Widget> buttons = List.empty(growable: true);
+    buttons.add(NegativeActionButton("Confirm", _clearData));
+    buttons.add(NeutralActionButton("Cancel", _cancelDeletion));
+
+    showDialog(
+        context: context,
+        builder: (context) {
+          return dialogBank.getDialog(
+            "Confirm Deletion",
+            "Permanently erase all profiles?",
+            buttons,
+          );
+        });
+  }
+
+  void _showClearDataSuccessDialog() {
+    List<Widget> buttons = List.empty(growable: true);
+    buttons.add(PositiveActionButton("Okay", _navigateHome));
+
+    showDialog(
+        context: context,
+        builder: (context) {
+          return dialogBank.getDialog(
+            "Success",
+            "All profiles erased.",
+            buttons,
+          );
+        });
+  }
+
+  void _navigateHome() {
+    while (Navigator.canPop(context)) {
+      Navigator.pop(context);
+    }
+
+    _navigateBottomBar(0);
+  }
+
+  void _cancelDeletion() {
+    Navigator.pop(context);
+  }
+
   void _clearData() {
     HiveHelper.clearData();
+    Navigator.pop(context);
+    _showClearDataSuccessDialog();
   }
 
   Widget getHomeBody() {
@@ -90,7 +140,7 @@ class _HomeFeedState extends State<HomeFeed> {
       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [NeutralActionButton("Clear Data", _clearData)]),
+          children: [NeutralActionButton("Clear Data", _confirmClearData)]),
     );
   }
 
