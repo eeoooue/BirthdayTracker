@@ -2,6 +2,7 @@ import 'package:birthdaytracker/models/dialog_bank.dart';
 import 'package:birthdaytracker/models/nav_helper.dart';
 import 'package:birthdaytracker/widgets/negative_action_button.dart';
 import 'package:birthdaytracker/widgets/neutral_action_button.dart';
+import 'package:birthdaytracker/widgets/profile_detail.dart';
 import 'package:flutter/material.dart';
 import '../models/birthday_profile.dart';
 import '../models/hive_helper.dart';
@@ -60,7 +61,7 @@ class _ViewProfileState extends State<ViewProfile> {
     List<Widget> details = List.empty(growable: true);
 
     if (profile.includesYear) {
-      Container element = Container(child: Text("Age: ${profile.getAge()}"));
+      var element = ProfileDetail("Age: ${profile.getAge()}");
       details.add(element);
     }
 
