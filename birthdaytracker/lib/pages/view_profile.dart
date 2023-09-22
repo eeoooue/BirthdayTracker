@@ -2,6 +2,7 @@ import 'package:birthdaytracker/models/dialog_bank.dart';
 import 'package:birthdaytracker/models/nav_helper.dart';
 import 'package:birthdaytracker/widgets/negative_action_button.dart';
 import 'package:birthdaytracker/widgets/neutral_action_button.dart';
+import 'package:birthdaytracker/widgets/profile_detail.dart';
 import 'package:flutter/material.dart';
 import '../models/birthday_profile.dart';
 import '../models/hive_helper.dart';
@@ -56,6 +57,23 @@ class _ViewProfileState extends State<ViewProfile> {
     navHelper.navigateHome(context);
   }
 
+  Row getDetailsRow() {
+    List<Widget> details = List.empty(growable: true);
+    bool includeZodiac = true;
+
+    if (profile.includesYear) {
+      var element = ProfileDetail("Age: ${profile.getAge()}");
+      details.add(element);
+    }
+
+    if (includeZodiac) {
+      var element = ProfileDetail("Sign: ${profile.getZodiacSign()}");
+      details.add(element);
+    }
+
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: details);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,6 +89,7 @@ class _ViewProfileState extends State<ViewProfile> {
           Container(color: Colors.transparent, height: 70),
           ProfilePicture(profile, 150),
           ProfileNameCard(profile),
+          getDetailsRow(),
           BorderedBirthday(profile),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
