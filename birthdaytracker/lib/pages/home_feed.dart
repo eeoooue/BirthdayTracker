@@ -2,6 +2,8 @@ import 'package:birthdaytracker/models/dialog_bank.dart';
 import 'package:birthdaytracker/models/hive_helper.dart';
 import 'package:birthdaytracker/models/nav_helper.dart';
 import 'package:birthdaytracker/models/profile_directory.dart';
+import 'package:birthdaytracker/widgets/app_icon.dart';
+import 'package:birthdaytracker/widgets/build_info.dart';
 import 'package:birthdaytracker/widgets/directory_elements.dart';
 import 'package:birthdaytracker/widgets/my_app_bar.dart';
 import 'package:birthdaytracker/widgets/negative_action_button.dart';
@@ -149,7 +151,11 @@ class _HomeFeedState extends State<HomeFeed> {
       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [NeutralActionButton("Clear Data", _confirmClearData)]),
+          children: [
+            MyAppIcon(),
+            BuildInfo("v0.6.0"),
+            NeutralActionButton("Clear Data", _confirmClearData)
+          ]),
     );
   }
 
