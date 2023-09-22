@@ -25,10 +25,13 @@ class BdayBarDateBox extends StatelessWidget {
                 spreadRadius: -5,
                 blurRadius: 50)
           ]),
-          child: Column(children: [
-            Expanded(flex: 2, child: DateBoxMonth(month)),
-            Expanded(flex: 3, child: DateBoxDay(day)),
-          ]),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                DateBoxMonth(month),
+                DateBoxDay(day),
+              ]),
         ),
       ),
     );
