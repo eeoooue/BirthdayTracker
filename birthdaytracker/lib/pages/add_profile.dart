@@ -1,3 +1,4 @@
+import 'package:birthdaytracker/models/dialog_bank.dart';
 import 'package:birthdaytracker/models/hive_helper.dart';
 import 'package:birthdaytracker/models/nav_helper.dart';
 import 'package:birthdaytracker/widgets/neutral_action_button.dart';
@@ -18,6 +19,7 @@ class AddProfile extends StatefulWidget {
 class _AddProfileState extends State<AddProfile> {
   final NavigationHelper navHelper = NavigationHelper();
   final _textController = TextEditingController();
+  final DialogBank dialogBank = DialogBank();
 
   bool includeYear = false;
   DateTime selectedTime = DateTime.now();
@@ -71,7 +73,26 @@ class _AddProfileState extends State<AddProfile> {
     }
 
     HiveHelper.saveProfile(profile);
+    _showSuccessDialog();
+  }
+
+  void _navigateHome() {
     navHelper.navigateHome(context);
+  }
+
+  void _showSuccessDialog() {
+    List<Widget> buttons = List.empty(growable: true);
+    buttons.add(PositiveActionButton("Okay", _navigateHome));
+
+    showDialog(
+        context: context,
+        builder: (context) {
+          return dialogBank.getDialog(
+            "Success",
+            "New profile saved.",
+            buttons,
+          );
+        });
   }
 
   void _showDatePicker() {
@@ -101,38 +122,40 @@ class _AddProfileState extends State<AddProfile> {
           "Add Profile",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color.fromRGBO(40, 30, 42, 1),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: EdgeInsets.all(20),
-            child: TextField(
-              controller: _textController,
-              decoration: const InputDecoration(
-                  hintText: "Name", border: OutlineInputBorder()),
-            ),
-          ),
-          NeutralActionButton(dateButtonString, _showDatePicker),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text("Include Year?"),
-              Checkbox(
-                value: includeYear,
-                onChanged: (value) => checkBoxChanged(value),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: EdgeInsets.all(20),
+              child: TextField(
+                controller: _textController,
+                decoration: const InputDecoration(
+                    hintText: "Name", border: OutlineInputBorder()),
               ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              PositiveActionButton("Submit", _submit),
-              NegativeActionButton("Cancel", _cancel),
-            ],
-          )
-        ],
+            ),
+            NeutralActionButton(dateButtonString, _showDatePicker),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("Include Year?"),
+                Checkbox(
+                  value: includeYear,
+                  onChanged: (value) => checkBoxChanged(value),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                PositiveActionButton("Submit", _submit),
+                NegativeActionButton("Cancel", _cancel),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

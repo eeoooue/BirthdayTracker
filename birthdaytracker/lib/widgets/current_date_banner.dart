@@ -18,7 +18,7 @@ class CurrentDateBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color.fromARGB(255, 172, 217, 240),
+      color: const Color.fromRGBO(155, 80, 148, 1),
       height: 32,
       child: Center(
           child: Text(

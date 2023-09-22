@@ -23,17 +23,26 @@ class BirthdayProfileBar extends StatelessWidget {
         onPressed: () {
           _openProfile(context);
         },
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: Container(
-            color: Colors.grey[300],
-            height: 80,
-            child:
-                Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-              ProfilePicture(profile, 68),
-              Expanded(child: BdayBarName(profile.name)),
-              BdayBarDateBox(profile.month, profile.day),
-            ]),
+        child: Container(
+          decoration: const BoxDecoration(boxShadow: [
+            BoxShadow(
+              color: Color.fromRGBO(0, 0, 0, 0.1),
+              blurRadius: 15,
+              spreadRadius: 2,
+            )
+          ]),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Container(
+              color: Colors.white,
+              height: 80,
+              child:
+                  Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+                ProfilePicture(profile, 68),
+                Expanded(child: BdayBarName(profile.name)),
+                BdayBarDateBox(profile.month, profile.day),
+              ]),
+            ),
           ),
         ),
       ),

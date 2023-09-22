@@ -1,3 +1,4 @@
+import 'package:birthdaytracker/models/dialog_bank.dart';
 import 'package:birthdaytracker/models/hive_helper.dart';
 import 'package:birthdaytracker/models/nav_helper.dart';
 import 'package:birthdaytracker/widgets/negative_action_button.dart';
@@ -23,6 +24,7 @@ class _EditProfileState extends State<EditProfile> {
   final BirthdayProfile profile;
   final NavigationHelper navHelper = NavigationHelper();
   final _textController = TextEditingController();
+  final DialogBank dialogBank = DialogBank();
 
   DateTime selectedTime = DateTime.now();
   String dateButtonString = "";
@@ -101,7 +103,26 @@ class _EditProfileState extends State<EditProfile> {
       savePhoto(profile);
     }
 
+    _showSuccessDialog();
+  }
+
+  void _navigateHome() {
     navHelper.navigateHome(context);
+  }
+
+  void _showSuccessDialog() {
+    List<Widget> buttons = List.empty(growable: true);
+    buttons.add(PositiveActionButton("Okay", _navigateHome));
+
+    showDialog(
+        context: context,
+        builder: (context) {
+          return dialogBank.getDialog(
+            "Success",
+            "Changes saved.",
+            buttons,
+          );
+        });
   }
 
   Future<String> savePhoto(BirthdayProfile profile) async {
@@ -143,39 +164,41 @@ class _EditProfileState extends State<EditProfile> {
           "Edit Profile",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color.fromRGBO(40, 30, 42, 1),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: TextField(
-              controller: _textController,
-              decoration: const InputDecoration(
-                  hintText: "Name", border: OutlineInputBorder()),
-            ),
-          ),
-          NeutralActionButton(photoButtonText, _addPhoto),
-          NeutralActionButton(dateButtonString, _showDatePicker),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text("Include Year?"),
-              Checkbox(
-                value: includesYear,
-                onChanged: (value) => checkBoxChanged(value),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: TextField(
+                controller: _textController,
+                decoration: const InputDecoration(
+                    hintText: "Name", border: OutlineInputBorder()),
               ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              PositiveActionButton("Save", submitChanges),
-              NegativeActionButton("Cancel", _cancel),
-            ],
-          )
-        ],
+            ),
+            NeutralActionButton(photoButtonText, _addPhoto),
+            NeutralActionButton(dateButtonString, _showDatePicker),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("Include Year?"),
+                Checkbox(
+                  value: includesYear,
+                  onChanged: (value) => checkBoxChanged(value),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                PositiveActionButton("Save", submitChanges),
+                NegativeActionButton("Cancel", _cancel),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

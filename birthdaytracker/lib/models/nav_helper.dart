@@ -20,23 +20,6 @@ class NavigationHelper {
     ];
   }
 
-  void navigateBottomBar(BuildContext context, int index) {
-    switch (index) {
-      case 0:
-        {
-          Navigator.popAndPushNamed(context, "/homefeed");
-        }
-      case 1:
-        {
-          Navigator.popAndPushNamed(context, "/profiledirectory");
-        }
-      case 2:
-        {
-          Navigator.popAndPushNamed(context, "/settings");
-        }
-    }
-  }
-
   void addProfile(BuildContext context) {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => AddProfile()));
@@ -45,5 +28,15 @@ class NavigationHelper {
   void editProfile(BuildContext context, BirthdayProfile profile) {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => EditProfile(profile)));
+  }
+
+  BottomNavigationBar getBottomNav(Function(int) onTapFunction, int index) {
+    return BottomNavigationBar(
+        backgroundColor: const Color.fromRGBO(40, 30, 42, 1),
+        selectedItemColor: Colors.white,
+        unselectedItemColor: const Color.fromRGBO(145, 133, 145, 0.75),
+        currentIndex: index,
+        onTap: onTapFunction,
+        items: getNavBarItems());
   }
 }
