@@ -1,10 +1,10 @@
 # BirthdayTracker
 
-Flutter app for tracking upcoming birthdays.
+Mobile app for tracking upcoming birthdays.
 
 This project is a personal exercise in iterative development:
 
-| Release | Features | 
+| Release | Features Added | 
 | ------ | ----- |
 | [```v0.1.0```](https://github.com/eeoooue/BirthdayTracker/releases/tag/v0.1.0) | ```Home Feed``` ```Navigation``` ```Profile Directory``` | 
 | [```v0.2.0```](https://github.com/eeoooue/BirthdayTracker/releases/tag/v0.2.0) | ```Add Profile Form``` ```View Profiles``` | 
@@ -20,4 +20,3 @@ This project is a personal exercise in iterative development:
 ![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)
 ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
 ![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
-![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)
