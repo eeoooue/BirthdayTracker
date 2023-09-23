@@ -13,6 +13,9 @@ This project is a personal exercise in iterative development:
 | [```v0.5.0```](https://github.com/eeoooue/BirthdayTracker/releases/tag/v0.5.0) |  ```Dialog System``` ```Revised Navigation``` ```Styling``` | 
 | [```v1.0.0```](https://github.com/eeoooue/BirthdayTracker/releases/tag/v1.0.0) | ```App Metadata``` ```New User Experience``` ```Profile Details``` | 
 
+### Screen Recording (v1.0.0)
+
+<a href="url"><img src="./about/screenrecordings/screen_rec_1.0.0.gif" height="800" ></a>
 
 ![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)
 ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
